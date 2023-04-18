@@ -13,6 +13,7 @@ enum AssetsColor {
     case darkGreen
     case baseGray
     case darkGray
+    case darkRed
 }
 
 extension UIColor {
@@ -28,6 +29,8 @@ extension UIColor {
             return #colorLiteral(red: 0.7803922892, green: 0.7803922296, blue: 0.7803922892, alpha: 1)
         case .darkGray:
             return #colorLiteral(red: 0.6078431606, green: 0.6078431606, blue: 0.6078432202, alpha: 1)
+        case .darkRed:
+            return #colorLiteral(red: 0.7352442741, green: 0.257569313, blue: 0.2613297999, alpha: 1)
         }
     }
 }

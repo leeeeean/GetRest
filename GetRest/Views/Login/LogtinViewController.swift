@@ -21,40 +21,15 @@ final class LoginViewController: UIViewController {
     
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
-        textField.font = .systemFont(ofSize: 16.0, weight: .bold)
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "ID",
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 16.0, weight: .light),
-                .foregroundColor: UIColor.appColor(.baseGreen)
-            ])
-        textField.textColor = .label
-        textField.layer.cornerRadius = 3.0
-        textField.backgroundColor = .appColor(.lightGreen)
-        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 16.0, height: 0.0))
-        textField.leftViewMode = .always
-        
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .allEditingEvents)
+        setTextField("ID", textField: textField)
         
         return textField
     }()
     
-    private lazy var passworTextField: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.font = .systemFont(ofSize: 16.0, weight: .bold)
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "PASSWORD",
-            attributes: [
-                .font: UIFont.systemFont(ofSize: 16.0, weight: .light),
-                .foregroundColor: UIColor.appColor(.baseGreen)
-            ])
-        textField.textColor = .label
-        textField.layer.cornerRadius = 3.0
-        textField.backgroundColor = .appColor(.lightGreen)
-        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 16.0, height: 0.0))
-        textField.leftViewMode = .always
-        
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .allEditingEvents)
+        setTextField("PASSWORD", textField: textField)
+        textField.isSecureTextEntry
         
         return textField
     }()
@@ -62,7 +37,7 @@ final class LoginViewController: UIViewController {
     lazy var autoLoginButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
-        button.tintColor = .appColor(.darkGreen)
+        button.tintColor = .white
         button.tag = 0
         return button
     }()
@@ -71,7 +46,7 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "자동로그인"
         label.font = .systemFont(ofSize: 15.0, weight: .medium)
-        label.tintColor = .white
+        label.textColor = .white
         return label
     }()
     
@@ -79,7 +54,7 @@ final class LoginViewController: UIViewController {
         let label = UILabel()
         label.text = "처음이라구요?"
         label.font = .systemFont(ofSize: 13.0, weight: .light)
-        label.tintColor = .white
+        label.textColor = .white
         return label
     }()
     
@@ -91,6 +66,22 @@ final class LoginViewController: UIViewController {
         return button
     }()
 
+    private lazy var loginButton: CustomButton = {
+        let button = CustomButton()
+        button.setTitle("들어갈래요", for: .normal)
+        button.setTitleColor(.lightGray, for: .disabled)
+        button.backgroundColor = .appColor(.darkGreen)
+        button.titleLabel?.textColor = .white
+        button.layer.cornerRadius = 5.0
+        button.layer.shadowOffset = CGSize(width: 0, height: 3)
+        button.layer.shadowColor = UIColor(ciColor: .black).cgColor
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowRadius = 3.0
+        
+        button.isEnabled = false
+        return button
+    }()
+    
     private lazy var autoLoginStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -115,21 +106,22 @@ final class LoginViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var loginButton: CustomButton = {
-        let button = CustomButton()
-        button.setTitle("들어갈래요", for: .normal)
-        button.setTitleColor(.lightGray, for: .disabled)
-        button.backgroundColor = .appColor(.darkGreen)
-        button.titleLabel?.textColor = .white
-        button.layer.cornerRadius = 3.0
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
-        button.layer.shadowColor = UIColor(ciColor: .black).cgColor
-        button.layer.shadowOpacity = 0.2
-        button.layer.shadowRadius = 3.0
+    private func setTextField(_ placeholder: String, textField: UITextField) {
+        textField.font = .systemFont(ofSize: 16.0, weight: .bold)
+        textField.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [
+                .font: UIFont.systemFont(ofSize: 16.0, weight: .light),
+                .foregroundColor: UIColor.appColor(.baseGreen)
+            ])
+        textField.textColor = .label
+        textField.layer.cornerRadius = 5.0
+        textField.backgroundColor = .appColor(.lightGreen)
+        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 24.0, height: 0.0))
+        textField.leftViewMode = .always
         
-        button.isEnabled = false
-        return button
-    }()
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .allEditingEvents)
+    }
     
     let disposeBag = DisposeBag()
     let viewModel = LoginViewModel(model: LoginModel())
@@ -168,7 +160,7 @@ final class LoginViewController: UIViewController {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         guard let id = idTextField.text,
-              let password = passworTextField.text,
+              let password = passwordTextField.text,
               !id.isEmpty,
               !password.isEmpty
         else {
@@ -183,7 +175,7 @@ final class LoginViewController: UIViewController {
         [
             imageView,
             idTextField,
-            passworTextField,
+            passwordTextField,
             autoLoginStackView,
             signinStackView,
             loginButton
@@ -200,24 +192,24 @@ final class LoginViewController: UIViewController {
         idTextField.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(32.0)
             $0.leading.trailing.equalToSuperview().inset(32.0)
-            $0.height.equalTo(32.0)
+            $0.height.equalTo(48.0)
         }
 
-        passworTextField.snp.makeConstraints {
+        passwordTextField.snp.makeConstraints {
             $0.top.equalTo(idTextField.snp.bottom).offset(16.0)
             $0.leading.trailing.equalToSuperview().inset(32.0)
             $0.height.equalTo(idTextField.snp.height)
         }
 
         autoLoginStackView.snp.makeConstraints {
-            $0.top.equalTo(passworTextField.snp.bottom).offset(16.0)
-            $0.leading.equalTo(passworTextField.snp.leading)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(16.0)
+            $0.leading.equalTo(passwordTextField.snp.leading)
             $0.height.equalTo(20.0)
         }
         
         signinStackView.snp.makeConstraints {
-            $0.top.equalTo(passworTextField.snp.bottom).offset(16.0)
-            $0.trailing.equalTo(passworTextField.snp.trailing)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(16.0)
+            $0.trailing.equalTo(passwordTextField.snp.trailing)
             $0.height.equalTo(20.0)
 
         }
