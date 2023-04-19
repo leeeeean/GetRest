@@ -187,10 +187,18 @@ final class SigninViewController: UIViewController {
     func bind() {
         // 다썻어요 클릭시 - 팝업
         signinButton.rx.tap
-//            .bind(to: )
-//            .disposed(by: disposeBag)
+            .bind(to: self.rx.confirmAlert)
+            .disposed(by: disposeBag)
         
         // 회원가입 데이터 입력
+        let confirmCancleAlertViewModel = ConfirmCancleAlerViewModel()
+        confirmCancleAlertViewModel.state
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] state in
+                // 회원가입
+            })
+            .disposed(by: disposeBag)
+        
         // MainViewController 진입
     }
     
@@ -291,5 +299,19 @@ final class SigninViewController: UIViewController {
             $0.height.equalTo(48.0)
         }
     }
-    
+}
+
+extension Reactive where Base: SigninViewController {
+    var confirmAlert: Binder<Void> {
+        return Binder(base) { base, void in
+            let alertController = ConfirmCancleAlerViewController(
+                image: UIImage(systemName: "circle")!,
+                message: "회원가입이 완료되었어요",
+                alertType: .onlyConfirm
+            )
+            alertController.modalPresentationStyle = .fullScreen
+            alertController.modalPresentationStyle = .overCurrentContext
+            base.present(alertController, animated: true)
+        }
+    }
 }

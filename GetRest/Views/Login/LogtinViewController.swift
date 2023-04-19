@@ -236,7 +236,9 @@ extension Reactive where Base: LoginViewController {
     var moveToSigninView: Binder<Void> {
         return Binder(base) { base, void in
             let viewController = SigninViewController()
-            base.navigationController?.pushViewController(viewController, animated: true)
+//            let vc = ConfirmCancleAlerViewController(message: "ok", alertType: .confirmAndCancle)
+            viewController.modalPresentationStyle = .fullScreen
+            base.present(viewController, animated: true, completion: nil)
         }
     }
     

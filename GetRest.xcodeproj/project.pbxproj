@@ -24,6 +24,8 @@
 		4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D429EE7F7200BF1DFE /* SigninViewController.swift */; };
 		4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D729EE81A500BF1DFE /* Color+.swift */; };
 		4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */; };
+		4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */; };
+		4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift */; };
 		8077D3EDBDC1A174C8294D6C /* Pods_GetRest_GetRestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD66406E968670DFD91C76A1 /* Pods_GetRest_GetRestUITests.framework */; };
 		AB878F0FC5D52A64237113C5 /* Pods_GetRest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73200E0FA975D8F184F5CA45 /* Pods_GetRest.framework */; };
 		D91F3B55AA78C36CB83F51A7 /* Pods_GetRestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5E8DEB9C75E1B4C04CC8E6 /* Pods_GetRestTests.framework */; };
@@ -67,6 +69,8 @@
 		4BC4C0D429EE7F7200BF1DFE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		4BC4C0D729EE81A500BF1DFE /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ConfirmCancleAlerViewController.swift"; sourceTree = "<group>"; };
+		4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancleAlerViewModel.swift; sourceTree = "<group>"; };
 		4EEFA3DB38867B962C15D48A /* Pods-GetRestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRestTests.debug.xcconfig"; path = "Target Support Files/Pods-GetRestTests/Pods-GetRestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		73200E0FA975D8F184F5CA45 /* Pods_GetRest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetRest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5441B1761E71B94427251F /* Pods-GetRestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRestTests.release.xcconfig"; path = "Target Support Files/Pods-GetRestTests/Pods-GetRestTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 		4BC4C0C329ED606200BF1DFE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4BC4C0DB29EF93CE00BF1DFE /* Alert */,
 				4BC4C0D329EE7F5C00BF1DFE /* Signin */,
 				4BC4C0C529ED606D00BF1DFE /* Login */,
 				4BC4C0C429ED606800BF1DFE /* Main */,
@@ -211,6 +216,15 @@
 				4BC4C0D729EE81A500BF1DFE /* Color+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4BC4C0DB29EF93CE00BF1DFE /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */,
+				4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		C79A566A2C3E7C0C97B6AD04 /* Frameworks */ = {
@@ -509,7 +523,9 @@
 				4BC4C0D129EE702700BF1DFE /* LoginModel.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
+				4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift in Sources */,
 				4BC4C0CF29EE701F00BF1DFE /* LoginViewModel.swift in Sources */,
+				4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */,
 				4BC4C0CD29ED60CA00BF1DFE /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
