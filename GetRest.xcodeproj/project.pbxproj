@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */; };
+		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
+		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
+		4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */; };
 		4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */; };
 		4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */; };
 		4BC4C09829ED5EAF00BF1DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4C09729ED5EAF00BF1DFE /* Assets.xcassets */; };
@@ -18,14 +22,15 @@
 		4BC4C0C229ED5FF300BF1DFE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC4C0C129ED5FF300BF1DFE /* SnapKit */; };
 		4BC4C0C829ED609900BF1DFE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC4C0C729ED609900BF1DFE /* Alamofire */; };
 		4BC4C0CB29ED60AE00BF1DFE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4BC4C0CA29ED60AE00BF1DFE /* Kingfisher */; };
-		4BC4C0CD29ED60CA00BF1DFE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0CC29ED60CA00BF1DFE /* MainViewController.swift */; };
+		4BC4C0CD29ED60CA00BF1DFE /*  MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0CC29ED60CA00BF1DFE /*  MainTabBarController.swift */; };
 		4BC4C0CF29EE701F00BF1DFE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0CE29EE701F00BF1DFE /* LoginViewModel.swift */; };
 		4BC4C0D129EE702700BF1DFE /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D029EE702700BF1DFE /* LoginModel.swift */; };
 		4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D429EE7F7200BF1DFE /* SigninViewController.swift */; };
 		4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D729EE81A500BF1DFE /* Color+.swift */; };
 		4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */; };
 		4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */; };
-		4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift */; };
+		4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift */; };
+		4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0E029F05BE200BF1DFE /* SigninViewModel.swift */; };
 		8077D3EDBDC1A174C8294D6C /* Pods_GetRest_GetRestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD66406E968670DFD91C76A1 /* Pods_GetRest_GetRestUITests.framework */; };
 		AB878F0FC5D52A64237113C5 /* Pods_GetRest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73200E0FA975D8F184F5CA45 /* Pods_GetRest.framework */; };
 		D91F3B55AA78C36CB83F51A7 /* Pods_GetRestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5E8DEB9C75E1B4C04CC8E6 /* Pods_GetRestTests.framework */; };
@@ -51,6 +56,10 @@
 /* Begin PBXFileReference section */
 		1B3B2A6C64AAC8730BA65623 /* Pods-GetRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRest.release.xcconfig"; path = "Target Support Files/Pods-GetRest/Pods-GetRest.release.xcconfig"; sourceTree = "<group>"; };
 		43EA8D9A8AC0E4727790C725 /* Pods-GetRest-GetRestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRest-GetRestUITests.release.xcconfig"; path = "Target Support Files/Pods-GetRest-GetRestUITests/Pods-GetRest-GetRestUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterViewController.swift; sourceTree = "<group>"; };
+		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
+		4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		4BC4C08B29ED5EAD00BF1DFE /* GetRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,14 +72,15 @@
 		4BC4C0AF29ED5EAF00BF1DFE /* GetRestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRestUITests.swift; sourceTree = "<group>"; };
 		4BC4C0B129ED5EAF00BF1DFE /* GetRestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4BC4C0BE29ED5FCC00BF1DFE /* LogtinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogtinViewController.swift; sourceTree = "<group>"; };
-		4BC4C0CC29ED60CA00BF1DFE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4BC4C0CC29ED60CA00BF1DFE /*  MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " MainTabBarController.swift"; sourceTree = "<group>"; };
 		4BC4C0CE29EE701F00BF1DFE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		4BC4C0D029EE702700BF1DFE /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		4BC4C0D429EE7F7200BF1DFE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		4BC4C0D729EE81A500BF1DFE /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ConfirmCancleAlerViewController.swift"; sourceTree = "<group>"; };
-		4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancleAlerViewModel.swift; sourceTree = "<group>"; };
+		4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancleAlertViewModel.swift; sourceTree = "<group>"; };
+		4BC4C0E029F05BE200BF1DFE /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		4EEFA3DB38867B962C15D48A /* Pods-GetRestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRestTests.debug.xcconfig"; path = "Target Support Files/Pods-GetRestTests/Pods-GetRestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		73200E0FA975D8F184F5CA45 /* Pods_GetRest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetRest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5441B1761E71B94427251F /* Pods-GetRestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRestTests.release.xcconfig"; path = "Target Support Files/Pods-GetRestTests/Pods-GetRestTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +121,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BA7A7B429F225F7004EC262 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4BA7A7B529F2260B004EC262 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		4BA7A7B629F22618004EC262 /* JobPost */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */,
+			);
+			path = JobPost;
+			sourceTree = "<group>";
+		};
+		4BA7A7B729F22624004EC262 /* CoverLetter */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */,
+			);
+			path = CoverLetter;
+			sourceTree = "<group>";
+		};
 		4BC4C08229ED5EAD00BF1DFE = {
 			isa = PBXGroup;
 			children = (
@@ -168,11 +210,11 @@
 		4BC4C0C329ED606200BF1DFE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */,
 				4BC4C0DB29EF93CE00BF1DFE /* Alert */,
 				4BC4C0D329EE7F5C00BF1DFE /* Signin */,
 				4BC4C0C529ED606D00BF1DFE /* Login */,
 				4BC4C0C429ED606800BF1DFE /* Main */,
-				4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,7 +222,11 @@
 		4BC4C0C429ED606800BF1DFE /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				4BC4C0CC29ED60CA00BF1DFE /* MainViewController.swift */,
+				4BC4C0CC29ED60CA00BF1DFE /*  MainTabBarController.swift */,
+				4BA7A7B729F22624004EC262 /* CoverLetter */,
+				4BA7A7B429F225F7004EC262 /* Home */,
+				4BA7A7B629F22618004EC262 /* JobPost */,
+				4BA7A7B529F2260B004EC262 /* Portfolio */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -206,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0D429EE7F7200BF1DFE /* SigninViewController.swift */,
+				4BC4C0E029F05BE200BF1DFE /* SigninViewModel.swift */,
 			);
 			path = Signin;
 			sourceTree = "<group>";
@@ -222,7 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */,
-				4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift */,
+				4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -516,17 +563,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */,
 				4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */,
+				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
+				4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */,
+				4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */,
 				4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */,
 				4BC4C0D129EE702700BF1DFE /* LoginModel.swift in Sources */,
+				4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
-				4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlerViewModel.swift in Sources */,
+				4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift in Sources */,
 				4BC4C0CF29EE701F00BF1DFE /* LoginViewModel.swift in Sources */,
 				4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */,
-				4BC4C0CD29ED60CA00BF1DFE /* MainViewController.swift in Sources */,
+				4BC4C0CD29ED60CA00BF1DFE /*  MainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

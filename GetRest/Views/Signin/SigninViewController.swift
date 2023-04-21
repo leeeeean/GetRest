@@ -176,30 +176,21 @@ final class SigninViewController: UIViewController {
     }
     
     let disposeBag = DisposeBag()
-    
+    let viewModel = SigninViewModel()
+    var confirmCancleAlertViewModel: ConfirmCancleAlertViewModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         layout()
-        bind()
+        bind(viewModel)
     }
-    
-    func bind() {
+
+    func bind(_ viewModel: SigninViewModel) {
         // 다썻어요 클릭시 - 팝업
         signinButton.rx.tap
             .bind(to: self.rx.confirmAlert)
             .disposed(by: disposeBag)
-        
-        // 회원가입 데이터 입력
-        let confirmCancleAlertViewModel = ConfirmCancleAlerViewModel()
-        confirmCancleAlertViewModel.state
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] state in
-                // 회원가입
-            })
-            .disposed(by: disposeBag)
-        
-        // MainViewController 진입
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -228,14 +219,7 @@ final class SigninViewController: UIViewController {
         }
         notSameErrorLabel.isHidden = true
     }
-    private func colorToImage(_ color: UIColor) -> UIImage {
-        let size: CGSize = CGSize(width: UIScreen.main.bounds.width, height: 10)
-        let image: UIImage = UIGraphicsImageRenderer(size: size).image { context in
-            color.setFill()
-            context.fill(CGRect(origin: .zero, size: size))
-        }
-        return image
-    }
+ 
     private func layout() {
         title = "회원가입"
         
@@ -304,14 +288,48 @@ final class SigninViewController: UIViewController {
 extension Reactive where Base: SigninViewController {
     var confirmAlert: Binder<Void> {
         return Binder(base) { base, void in
+//            해결 1
+//            let alertController = ConfirmCancleAlerViewController(
+//                image: UIImage(systemName: "circle")!,
+//                message: "회원가입이 완료되었어요",
+//                alertType: .onlyConfirm
+//            )
+//            alertController.modalPresentationStyle = .fullScreen
+//            base.present(alertController, animated: true)
+            
+//            해결 2
+//            let alertController = UIAlertController(title: "회원가입이 완료되었어요", message: nil, preferredStyle: .alert)
+//            let confirmActionButton = UIAlertAction(title: "확인", style: .default) { _ in
+//                print("회원가입")
+//                // MainViewController 진입
+//                let viewController = MainViewController()
+//                viewController.modalPresentationStyle = .fullScreen
+//                base.present(viewController, animated: true)
+//            }
+//
+//            alertController.addAction(confirmActionButton)
+//            base.present(alertController, animated: true)
+            
+//            해결 3
             let alertController = ConfirmCancleAlerViewController(
-                image: UIImage(systemName: "circle")!,
-                message: "회원가입이 완료되었어요",
-                alertType: .onlyConfirm
-            )
-            alertController.modalPresentationStyle = .fullScreen
-            alertController.modalPresentationStyle = .overCurrentContext
+                            image: UIImage(systemName: "circle")!,
+                            message: "회원가입이 완료되었어요",
+                            alertType: .onlyConfirm) {
+                                print("회원가입")
+                                let vc = MainTabBarController()
+                                base.navigationController?.pushViewController(vc, animated: true)
+                            }
+            alertController.modalPresentationStyle = .overFullScreen
             base.present(alertController, animated: true)
         }
     }
 }
+
+/*
+ 문제 : 모달 UIViewController에서 실시간 데이터 이동이 안됨
+ 해결1 > fullScreen으로하고 viewWillAppear 사용
+        modalPresentationStyle의 상태를 무조건 fullScreen으로 해야만 viewWillAppear가 동작
+        투명하게 비치는 alert를 만들어야함 --> .overFullScreen --> viewWillAppear 동작 X
+ 해결2 > 기본 alertController 사용..
+ 해결3 > confirm을 누르면 해야할 일은 completion 값에 넘겨본다... 이게 맞는지는 모르겠는....
+ */

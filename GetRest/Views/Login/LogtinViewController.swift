@@ -132,6 +132,11 @@ final class LoginViewController: UIViewController {
         bind(viewModel: viewModel)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        layout()
+    }
+    
     func bind(viewModel: LoginViewModel) {
 //        자동로그인 버튼이 탭 됐을 때
 //        로그인 될 때 tag 정보가 넘어가야 합니다 (loginButton.rx.tap)
@@ -172,6 +177,13 @@ final class LoginViewController: UIViewController {
     }
     
     private func layout() {
+        
+        view.backgroundColor = .appColor(.baseGreen)
+        
+//        navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
+        navigationController?.navigationBar.backgroundColor = .appColor(.baseGreen)
+        navigationController?.navigationBar.layer.shadowOpacity = 0.0
+        
         [
             imageView,
             idTextField,
@@ -220,8 +232,6 @@ final class LoginViewController: UIViewController {
             $0.trailing.equalTo(signinStackView.snp.trailing)
             $0.height.equalTo(48.0)
         }
-
-        view.backgroundColor = .appColor(.baseGreen)
     }
 }
 
@@ -236,16 +246,15 @@ extension Reactive where Base: LoginViewController {
     var moveToSigninView: Binder<Void> {
         return Binder(base) { base, void in
             let viewController = SigninViewController()
-//            let vc = ConfirmCancleAlerViewController(message: "ok", alertType: .confirmAndCancle)
-            viewController.modalPresentationStyle = .fullScreen
-            base.present(viewController, animated: true, completion: nil)
+            base.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
     var moveToMainView: Binder<Void> {
         return Binder(base) { base, void in
-            let viewController = MainViewController()
-            base.navigationController?.pushViewController(viewController, animated: true)
+            let viewController = MainTabBarController()
+            viewController.modalPresentationStyle = .fullScreen
+            base.present(viewController, animated: true, completion: nil)
         }
     }
 }

@@ -22,7 +22,7 @@ final class ConfirmCancleAlerViewController: UIViewController {
             width: self.view.frame.size.width,
             height: self.view.frame.size.height
         ))
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         view.layer.opacity = 0.5
         
         return view
@@ -98,22 +98,25 @@ final class ConfirmCancleAlerViewController: UIViewController {
     let image: UIImage?
     let message: String?
     let alertType: AlertType
+    let completion: () -> ()
     
-    let viewModel = ConfirmCancleAlerViewModel()
+    let viewModel = ConfirmCancleAlertViewModel()
     
-    init(image: UIImage? = nil, message: String, alertType: AlertType) {
+    init(image: UIImage? = nil, message: String, alertType: AlertType, completion: @escaping () -> Void) {
         self.image = image
         self.message = message
         self.alertType = alertType
+        self.completion = completion
         
         super.init(nibName: nil, bundle: nil)
     }
     
-    init(image: UIImage, message: String, alertType: AlertType) {
+    init(image: UIImage, message: String, alertType: AlertType, completion: @escaping () -> Void) {
         self.image = image
         self.message = message
         self.alertType = alertType
-        
+        self.completion = completion
+
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -127,9 +130,10 @@ final class ConfirmCancleAlerViewController: UIViewController {
         bind(viewModel)
     }
     
-    func bind(_ viewModel: ConfirmCancleAlerViewModel) {
+    let signin = SigninViewController()
+    func bind(_ viewModel: ConfirmCancleAlertViewModel) {
         confirmButton.rx.tap
-            .subscribe(onNext:  { [weak self] in
+            .subscribe(onNext: { [weak self] in
                 self?.confirmButtonTapped(state: true)
             })
             .disposed(by: disposeBag)
@@ -138,6 +142,7 @@ final class ConfirmCancleAlerViewController: UIViewController {
             .subscribe(onNext: { [weak self] in
                 self?.cancleButtonTapped()
             })
+            .disposed(by: disposeBag)
     }
     
     func cancleButtonTapped() {
@@ -145,10 +150,8 @@ final class ConfirmCancleAlerViewController: UIViewController {
     }
     
     func confirmButtonTapped(state: Bool) {
-        dismiss(animated: true) { [weak self] in
-            self?.viewModel.state.onNext(state)
-            self?.viewModel.state.onCompleted()
-        }
+        dismiss(animated: true)
+        completion()
     }
     
     private func layout() {
@@ -176,8 +179,8 @@ final class ConfirmCancleAlerViewController: UIViewController {
             $0.top.equalTo(alertView.snp.top)
             $0.leading.equalTo(alertView.snp.leading)
             $0.trailing.equalTo(alertView.snp.trailing)
-            $0.height.equalTo(150.0)
             if image == nil { $0.height.equalTo(0.0) }
+            else { $0.height.equalTo(150.0) }
         }
         
         alertMessageLabel.snp.makeConstraints {
@@ -195,4 +198,5 @@ final class ConfirmCancleAlerViewController: UIViewController {
         }
     }
 }
+
 
