@@ -1,0 +1,6 @@
+framework module Pods_GetRest_GetRestUITests {
+  umbrella header "Pods-GetRest-GetRestUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
