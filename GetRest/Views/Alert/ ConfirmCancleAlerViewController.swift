@@ -22,7 +22,7 @@ final class ConfirmCancleAlerViewController: UIViewController {
             width: self.view.frame.size.width,
             height: self.view.frame.size.height
         ))
-        view.backgroundColor = .clear
+        view.backgroundColor = .gray
         view.layer.opacity = 0.5
         
         return view
@@ -37,6 +37,7 @@ final class ConfirmCancleAlerViewController: UIViewController {
     
     private lazy var alertImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = image
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFit
         guard let image = image else {
@@ -100,8 +101,6 @@ final class ConfirmCancleAlerViewController: UIViewController {
     let alertType: AlertType
     let completion: () -> ()
     
-    let viewModel = ConfirmCancleAlertViewModel()
-    
     init(image: UIImage? = nil, message: String, alertType: AlertType, completion: @escaping () -> Void) {
         self.image = image
         self.message = message
@@ -127,11 +126,11 @@ final class ConfirmCancleAlerViewController: UIViewController {
         super.viewDidLoad()
         
         layout()
-        bind(viewModel)
+        bind()
     }
     
     let signin = SigninViewController()
-    func bind(_ viewModel: ConfirmCancleAlertViewModel) {
+    func bind() {
         confirmButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.confirmButtonTapped(state: true)

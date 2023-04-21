@@ -1,4 +1,8 @@
 PODS:
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - Nimble (11.2.1)
   - Quick (6.1.0)
   - RxBlocking (6.5.0):
@@ -11,8 +15,10 @@ PODS:
   - RxSwift (6.5.0)
   - RxTest (6.5.0):
     - RxSwift (= 6.5.0)
+  - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
+  - Charts
   - Nimble
   - Quick
   - RxBlocking
@@ -22,6 +28,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Charts
     - Nimble
     - Quick
     - RxBlocking
@@ -29,8 +36,10 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxTest
+    - SwiftAlgorithms
 
 SPEC CHECKSUMS:
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   Nimble: 516ac503a0fafaa8e41dbb4a70a61be421fa893a
   Quick: 6676ffb409bf04abba2ff23902af2407bfc6ac90
   RxBlocking: 04b5fd28bb5ea49f7d64b80db8bbfe50d9cc1c7d
@@ -38,7 +47,8 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: e695bc155a7d5c25830e7acd943cd1abcf191d61
+PODFILE CHECKSUM: fada346f640598ade2d123c181e6688de556c50d
 
 COCOAPODS: 1.11.3

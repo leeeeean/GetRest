@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:HomeTableViewHeaderView.swift">
+   </FileRef>
+   <FileRef
       location = "group:GetRest.xcodeproj">
    </FileRef>
    <FileRef

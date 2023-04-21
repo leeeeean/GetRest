@@ -11,16 +11,21 @@ import SnapKit
 final class HomeViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
-        tableView.separatorStyle = .singleLine
-        
+        tableView.backgroundColor = .appColor(.baseGreen)
+        tableView.separatorStyle = .none
+        tableView.sectionHeaderTopPadding = 0
+        tableView.tableHeaderView = HomeTableViewHeaderView(name: name)
+
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .black
         
+        tableView.register(HomeTableViewEmptyCell.self, forCellReuseIdentifier: HomeTableViewEmptyCell.identifier)
+        tableView.register(HomeTableViewGraphCell.self, forCellReuseIdentifier: HomeTableViewGraphCell.identifier)
         
         return tableView
     }()
+    
+    var name: String = "홍길동"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,98 +39,62 @@ final class HomeViewController: UIViewController {
     }
     
     private func layout() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "HomeButton"),
+            style: .plain,
+            target: self,
+            action: nil)
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
+        
+        view.backgroundColor = .appColor(.baseGreen)
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
 
+let data: [Int]? = nil
+
 extension HomeViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let data = data,
+              data.count != 0 else {
+            return 700
+        }
+        
+        if indexPath.row == 0 { return 200 }
+        else { return 100 }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = CustomHeader(name: "최리안")
-        return headerView
-    }
-    
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        // 데이터가 0개일 때 return 1을 해줘야 함, 데이터 갯수가 있을 떄는 그냥 리턴
+        guard let data = data,
+              data.count != 0 else {
+            return 1
+        }
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    
-}
-
-
-final class CustomHeader: UIView {
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage()
-        imageView.image = UIImage(named: "HomeHeaderImage")
-        imageView.contentMode = .scaleAspectFit
-        
-        return imageView
-    }()
-    
-    private lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "\(name)님의 \n기록을 살펴볼까요?"
-        label.font = .systemFont(ofSize: 24.0, weight: .light)
-        label.textColor = .white
-        label.attributeFontColor(
-            target: name,
-            font: .systemFont(ofSize: 24, weight: .bold),
-            color: .white
-        )
-        
-        label.numberOfLines = 2
-        
-        return label
-    }()
-    
-    var name: String
-    
-    init(name: String) {
-        self.name = name
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        self.layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func layout() {
-        [imageView, label].forEach { addSubview($0) }
-        
-        imageView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+        guard indexPath.row != 0 else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewGraphCell.identifier, for: indexPath) as? HomeTableViewGraphCell
+            
+            cell?.layout()
+            return cell ?? UITableViewCell()
         }
         
-        label.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalTo(36.0)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewPortfolioCell.identifier, for: indexPath) as? HomeTableViewPortfolioCell
+//        cell?.layout()
+        return cell ?? UITableViewCell()
     }
-}
-
-extension UILabel {
-    func attributeFontColor(target: String, font: UIFont, color: UIColor) {
-        let text = text ?? ""
-        let attributedString = NSMutableAttributedString(string: text)
-        let range = (text as NSString).range(of: target)
-        attributedString.addAttributes([
-            .font: font,
-            .foregroundColor: color
-        ], range: range)
-        self.attributedText = attributedString
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+         1 + (data?.count ?? 0)
     }
 }

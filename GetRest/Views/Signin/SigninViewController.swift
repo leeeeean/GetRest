@@ -161,7 +161,7 @@ final class SigninViewController: UIViewController {
     }
     
     private func setTextField(_ placeholder: String, textField: UITextField) {
-        textField.font = .systemFont(ofSize: 16.0, weight: .light)
+        textField.font = .systemFont(ofSize: 16.0, weight: .bold)
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [
@@ -188,7 +188,6 @@ final class SigninViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let viewModel = SigninViewModel()
-    var confirmCancleAlertViewModel: ConfirmCancleAlertViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -328,7 +327,7 @@ extension Reactive where Base: SigninViewController {
             
 //            해결 3
             let alertController = ConfirmCancleAlerViewController(
-                            image: UIImage(systemName: "circle")!,
+                            image: UIImage(named: "SigninAlert")!,
                             message: "회원가입이 완료되었어요",
                             alertType: .onlyConfirm) {
                                 print("회원가입")

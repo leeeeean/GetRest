@@ -11,6 +11,12 @@
 		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
 		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
 		4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */; };
+		4BA7A7C129F27BEF004EC262 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7C029F27BEF004EC262 /* UILabel+.swift */; };
+		4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7C229F282BD004EC262 /* HomeTableViewHeaderView.swift */; };
+		4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7C429F28C8D004EC262 /* HomeTableViewEmptyCell.swift */; };
+		4BA7A7D029F29CC7004EC262 /* HomeTableViewGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */; };
+		4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */; };
+		4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */; };
 		4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */; };
 		4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */; };
 		4BC4C09829ED5EAF00BF1DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4C09729ED5EAF00BF1DFE /* Assets.xcassets */; };
@@ -29,7 +35,6 @@
 		4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D729EE81A500BF1DFE /* Color+.swift */; };
 		4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */; };
 		4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */; };
-		4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift */; };
 		4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C0E029F05BE200BF1DFE /* SigninViewModel.swift */; };
 		8077D3EDBDC1A174C8294D6C /* Pods_GetRest_GetRestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD66406E968670DFD91C76A1 /* Pods_GetRest_GetRestUITests.framework */; };
 		AB878F0FC5D52A64237113C5 /* Pods_GetRest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73200E0FA975D8F184F5CA45 /* Pods_GetRest.framework */; };
@@ -60,6 +65,12 @@
 		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		4BA7A7C029F27BEF004EC262 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		4BA7A7C229F282BD004EC262 /* HomeTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewHeaderView.swift; sourceTree = "<group>"; };
+		4BA7A7C429F28C8D004EC262 /* HomeTableViewEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewEmptyCell.swift; sourceTree = "<group>"; };
+		4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewGraphCell.swift; sourceTree = "<group>"; };
+		4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewQuarterHeaderView.swift; sourceTree = "<group>"; };
+		4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewPortfolioCell.swift; sourceTree = "<group>"; };
 		4BC4C08B29ED5EAD00BF1DFE /* GetRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +90,6 @@
 		4BC4C0D729EE81A500BF1DFE /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " ConfirmCancleAlerViewController.swift"; sourceTree = "<group>"; };
-		4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancleAlertViewModel.swift; sourceTree = "<group>"; };
 		4BC4C0E029F05BE200BF1DFE /* SigninViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewModel.swift; sourceTree = "<group>"; };
 		4EEFA3DB38867B962C15D48A /* Pods-GetRestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRestTests.debug.xcconfig"; path = "Target Support Files/Pods-GetRestTests/Pods-GetRestTests.debug.xcconfig"; sourceTree = "<group>"; };
 		73200E0FA975D8F184F5CA45 /* Pods_GetRest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetRest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +135,11 @@
 			isa = PBXGroup;
 			children = (
 				4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */,
+				4BA7A7C429F28C8D004EC262 /* HomeTableViewEmptyCell.swift */,
+				4BA7A7C229F282BD004EC262 /* HomeTableViewHeaderView.swift */,
+				4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */,
+				4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */,
+				4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -151,6 +166,13 @@
 				4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */,
 			);
 			path = CoverLetter;
+			sourceTree = "<group>";
+		};
+		4BA7A7C629F2933E004EC262 /* CustomGraph */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomGraph;
 			sourceTree = "<group>";
 		};
 		4BC4C08229ED5EAD00BF1DFE = {
@@ -211,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */,
+				4BA7A7C629F2933E004EC262 /* CustomGraph */,
 				4BC4C0DB29EF93CE00BF1DFE /* Alert */,
 				4BC4C0D329EE7F5C00BF1DFE /* Signin */,
 				4BC4C0C529ED606D00BF1DFE /* Login */,
@@ -261,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0D729EE81A500BF1DFE /* Color+.swift */,
+				4BA7A7C029F27BEF004EC262 /* UILabel+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */,
-				4BC4C0DE29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -565,9 +588,13 @@
 			files = (
 				4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */,
 				4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */,
+				4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */,
+				4BA7A7C129F27BEF004EC262 /* UILabel+.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
+				4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */,
+				4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */,
 				4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */,
 				4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */,
 				4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */,
@@ -575,8 +602,9 @@
 				4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
-				4BC4C0DF29F04DB000BF1DFE /* ConfirmCancleAlertViewModel.swift in Sources */,
+				4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */,
 				4BC4C0CF29EE701F00BF1DFE /* LoginViewModel.swift in Sources */,
+				4BA7A7D029F29CC7004EC262 /* HomeTableViewGraphCell.swift in Sources */,
 				4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */,
 				4BC4C0CD29ED60CA00BF1DFE /*  MainTabBarController.swift in Sources */,
 			);

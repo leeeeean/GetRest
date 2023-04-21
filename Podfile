@@ -8,6 +8,7 @@ target 'GetRest' do
   # Pods for GetRest
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'Charts'
 
   target 'GetRestTests' do
     inherit! :search_paths
