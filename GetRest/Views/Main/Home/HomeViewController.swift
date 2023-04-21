@@ -16,9 +16,30 @@ final class HomeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .black
+        
         
         return tableView
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        layout()
+        bind()
+    }
+    
+    func bind() {
+        
+    }
+    
+    private func layout() {
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints {
+            $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
@@ -47,6 +68,7 @@ extension HomeViewController: UITableViewDataSource {
 final class CustomHeader: UIView {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage()
         imageView.image = UIImage(named: "HomeHeaderImage")
         imageView.contentMode = .scaleAspectFit
         
@@ -56,21 +78,25 @@ final class CustomHeader: UIView {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = "\(name)님의 \n기록을 살펴볼까요?"
-        label.font = .systemFont(ofSize: 20.0, weight: .light)
+        label.font = .systemFont(ofSize: 24.0, weight: .light)
+        label.textColor = .white
         label.attributeFontColor(
             target: name,
             font: .systemFont(ofSize: 24, weight: .bold),
             color: .white
         )
         
+        label.numberOfLines = 2
+        
         return label
     }()
     
-    let name: String
+    var name: String
+    
     init(name: String) {
         self.name = name
-        super.init()
-        layout()
+        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        self.layout()
     }
     
     required init?(coder: NSCoder) {
@@ -86,7 +112,7 @@ final class CustomHeader: UIView {
         
         label.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalTo(40.0)
+            $0.leading.equalTo(36.0)
         }
     }
 }
@@ -94,12 +120,12 @@ final class CustomHeader: UIView {
 extension UILabel {
     func attributeFontColor(target: String, font: UIFont, color: UIColor) {
         let text = text ?? ""
-        let attributedString = NSMutableAttributedString(string: target)
+        let attributedString = NSMutableAttributedString(string: text)
         let range = (text as NSString).range(of: target)
         attributedString.addAttributes([
             .font: font,
             .foregroundColor: color
         ], range: range)
-        attributedText = attributedString
+        self.attributedText = attributedString
     }
 }

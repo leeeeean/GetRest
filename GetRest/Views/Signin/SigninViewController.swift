@@ -11,6 +11,14 @@ import RxSwift
 
 final class SigninViewController: UIViewController {
     
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "SigninBackground")
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
+    
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         setLabel("이름", label: label)
@@ -20,7 +28,7 @@ final class SigninViewController: UIViewController {
     
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
-        setTextField("홍길동", textField: textField)
+        setTextField("한들 또는 영문으로 씁시다", textField: textField)
 
         return textField
     }()
@@ -42,7 +50,7 @@ final class SigninViewController: UIViewController {
     
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
-        setTextField("ID", textField: textField)
+        setTextField("아이디", textField: textField)
     
         return textField
     }()
@@ -64,7 +72,7 @@ final class SigninViewController: UIViewController {
     
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        setTextField("Password", textField: textField)
+        setTextField("영어 + 숫자 6자 이상", textField: textField)
         textField.isSecureTextEntry = true
         textField.textContentType = .newPassword
         // ios keychain 적용할 수 있도록 나중에 바꿔보기
@@ -113,7 +121,7 @@ final class SigninViewController: UIViewController {
 
     private lazy var checkPasswordTextField: UITextField = {
         let textField = UITextField()
-        setTextField("Check Password", textField: textField)
+        setTextField("한번 더 확인해봐요", textField: textField)
         textField.isSecureTextEntry = true
         textField.textContentType = .newPassword
         
@@ -134,9 +142,12 @@ final class SigninViewController: UIViewController {
     private lazy var signinButton: CustomButton = {
         let button = CustomButton()
         button.setTitle("다썼어요", for: .normal)
-        button.setTitleColor(.lightGray, for: .disabled)
+        button.setTitleColor(.white, for: .disabled)
         button.titleLabel?.textColor = .white
-        button.backgroundColor = .appColor(.baseGreen)
+        button.customBackgroundButton(
+            enabled: UIColor.appColor(.baseGreen),
+            disabled: UIColor.appColor(.baseGray)
+        )
         button.layer.cornerRadius = 5.0
         
         button.isEnabled = false
@@ -160,7 +171,7 @@ final class SigninViewController: UIViewController {
         textField.textColor = .appColor(.baseGreen)
         textField.layer.borderWidth = 0.7
         textField.layer.cornerRadius = 5.0
-        textField.layer.borderColor = UIColor.appColor(.baseGray).cgColor
+        textField.layer.borderColor = UIColor.appColor(.darkGray).cgColor
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16.0, height: 50.0))
         textField.leftViewMode = .always
         
@@ -239,6 +250,7 @@ final class SigninViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         [
+            backgroundImageView,
             nameStackView,
             idStackView,
             passwordStackView,
@@ -249,6 +261,10 @@ final class SigninViewController: UIViewController {
         let insetWithStack: CGFloat = 32.0
         let insetWithLabelTextField: CGFloat = 28.0
         let stackHeight: CGFloat = 100.0
+        
+        backgroundImageView.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+        }
         
         nameStackView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(insetWithStack)

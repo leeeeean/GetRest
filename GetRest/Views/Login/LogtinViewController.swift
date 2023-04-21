@@ -12,10 +12,18 @@ import RxCocoa
 
 final class LoginViewController: UIViewController {
 
-    private lazy var imageView: UIImageView = {
+    private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "lightbulb")
-        imageView.tintColor = .white
+        imageView.image = UIImage(named: "LoginBackground")
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
+    
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "LoginLogo")
+        
         return imageView
     }()
     
@@ -29,7 +37,7 @@ final class LoginViewController: UIViewController {
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         setTextField("PASSWORD", textField: textField)
-        textField.isSecureTextEntry
+        textField.isSecureTextEntry = true
         
         return textField
     }()
@@ -45,7 +53,7 @@ final class LoginViewController: UIViewController {
     private lazy var autoLoginLabel: UILabel = {
         let label = UILabel()
         label.text = "자동로그인"
-        label.font = .systemFont(ofSize: 15.0, weight: .medium)
+        label.font = .systemFont(ofSize: 15.0, weight: .bold)
         label.textColor = .white
         return label
     }()
@@ -53,7 +61,7 @@ final class LoginViewController: UIViewController {
     private lazy var signinLabel: UILabel = {
         let label = UILabel()
         label.text = "처음이라구요?"
-        label.font = .systemFont(ofSize: 13.0, weight: .light)
+        label.font = .systemFont(ofSize: 13.0, weight: .medium)
         label.textColor = .white
         return label
     }()
@@ -61,7 +69,7 @@ final class LoginViewController: UIViewController {
     private lazy var signinButton: UIButton = {
         let button = UIButton()
         button.setTitle("회원가입", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 15.0, weight: .semibold)
+        button.titleLabel?.font = .systemFont(ofSize: 15.0, weight: .bold)
         button.titleLabel?.textColor = .white
         return button
     }()
@@ -69,15 +77,19 @@ final class LoginViewController: UIViewController {
     private lazy var loginButton: CustomButton = {
         let button = CustomButton()
         button.setTitle("들어갈래요", for: .normal)
-        button.setTitleColor(.lightGray, for: .disabled)
-        button.backgroundColor = .appColor(.darkGreen)
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+        button.setTitleColor(.appColor(.baseGreen), for: .disabled)
         button.titleLabel?.textColor = .white
         button.layer.cornerRadius = 5.0
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
+        button.layer.shadowOffset = CGSize(width: 0, height: 0)
         button.layer.shadowColor = UIColor(ciColor: .black).cgColor
-        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOpacity = 0.3
         button.layer.shadowRadius = 3.0
         
+        button.customBackgroundButton(
+            enabled: UIColor.appColor(.darkGreen),
+            disabled: UIColor.white
+        )
         button.isEnabled = false
         return button
     }()
@@ -177,15 +189,14 @@ final class LoginViewController: UIViewController {
     }
     
     private func layout() {
-        
         view.backgroundColor = .appColor(.baseGreen)
         
-//        navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
         navigationController?.navigationBar.backgroundColor = .appColor(.baseGreen)
         navigationController?.navigationBar.layer.shadowOpacity = 0.0
         
         [
-            imageView,
+            backgroundImageView,
+            logoImageView,
             idTextField,
             passwordTextField,
             autoLoginStackView,
@@ -194,40 +205,44 @@ final class LoginViewController: UIViewController {
         ]
             .forEach({ view.addSubview($0) })
 
-        imageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(24.0)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(200.0)
-            $0.height.equalTo(imageView.snp.width)
+        let labelInset: CGFloat = 40.0
+        
+        backgroundImageView.snp.makeConstraints {
+            $0.leading.trailing.bottom.top.equalToSuperview()
+        }
+        
+        logoImageView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(70.0)
+            $0.centerX.equalTo(backgroundImageView.snp.centerX)
         }
 
         idTextField.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(32.0)
-            $0.leading.trailing.equalToSuperview().inset(32.0)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(labelInset)
+            $0.leading.trailing.equalToSuperview().inset(labelInset)
             $0.height.equalTo(48.0)
         }
 
         passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(idTextField.snp.bottom).offset(16.0)
-            $0.leading.trailing.equalToSuperview().inset(32.0)
+            $0.top.equalTo(idTextField.snp.bottom).offset(20.0)
+            $0.leading.trailing.equalToSuperview().inset(labelInset)
             $0.height.equalTo(idTextField.snp.height)
         }
 
         autoLoginStackView.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(16.0)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(20.0)
             $0.leading.equalTo(passwordTextField.snp.leading)
             $0.height.equalTo(20.0)
         }
         
         signinStackView.snp.makeConstraints {
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(16.0)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(20.0)
             $0.trailing.equalTo(passwordTextField.snp.trailing)
             $0.height.equalTo(20.0)
 
         }
 
         loginButton.snp.makeConstraints {
-            $0.top.equalTo(signinStackView.snp.bottom).offset(24.0)
+            $0.top.equalTo(signinStackView.snp.bottom).offset(48.0)
             $0.leading.equalTo(autoLoginStackView.snp.leading)
             $0.trailing.equalTo(signinStackView.snp.trailing)
             $0.height.equalTo(48.0)

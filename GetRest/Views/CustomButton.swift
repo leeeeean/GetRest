@@ -10,7 +10,14 @@ import UIKit
 class CustomButton: UIButton {
     override var isEnabled: Bool {
         didSet {
-            alpha = isEnabled ? 1.0 : 0.6
+            backgroundColor = isEnabled ? enabledColor : disabledColor
         }
+    }
+    private var enabledColor: UIColor = .clear
+    private var disabledColor: UIColor = .clear
+
+    func customBackgroundButton(enabled: UIColor, disabled: UIColor) {
+        self.enabledColor = enabled
+        self.disabledColor = disabled
     }
 }
