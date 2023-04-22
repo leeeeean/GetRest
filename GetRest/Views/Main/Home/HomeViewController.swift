@@ -9,18 +9,26 @@ import UIKit
 import SnapKit
 
 final class HomeViewController: UIViewController {
+    
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .appColor(.baseGreen)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.separatorStyle = .none
         tableView.sectionHeaderTopPadding = 0
         tableView.tableHeaderView = HomeTableViewHeaderView(name: name)
-
+        tableView.sectionHeaderHeight = 0
+        tableView.sectionFooterHeight = 5
+        tableView.alwaysBounceVertical = false
+        tableView.bounces = false
+        
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.register(HomeTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeTableViewHeaderView.identifier)
+        tableView.register(HomeTableViewQuarterHeaderView.self, forHeaderFooterViewReuseIdentifier: HomeTableViewQuarterHeaderView.identifier)
         tableView.register(HomeTableViewEmptyCell.self, forCellReuseIdentifier: HomeTableViewEmptyCell.identifier)
         tableView.register(HomeTableViewGraphCell.self, forCellReuseIdentifier: HomeTableViewGraphCell.identifier)
+        tableView.register(HomeTableViewPortfolioCell.self, forCellReuseIdentifier: HomeTableViewPortfolioCell.identifier)
+        
         
         return tableView
     }()
@@ -45,56 +53,91 @@ final class HomeViewController: UIViewController {
             target: self,
             action: nil)
         navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "person.fill"),
+            style: .plain,
+            target: self,
+            action: nil)
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        
         navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
-        
-        view.backgroundColor = .appColor(.baseGreen)
+        navigationController?.navigationBar.backgroundColor = .appColor(.baseGreen)
+        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+
         view.addSubview(tableView)
-        
         tableView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
 
-let data: [Int]? = nil
+var data: [[Int]]? = [[1,2,3], [1,2], [1,2,3,4]]
 
 extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 { return CGFloat.leastNormalMagnitude }
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 { return UIView(frame: .zero) }
+        return HomeTableViewQuarterHeaderView(year: "2023", quarter: "3")
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let data = data,
               data.count != 0 else {
-            return 700
+            return 500
         }
-        
-        if indexPath.row == 0 { return 200 }
+
+        if indexPath.row == 0 && indexPath.section == 0 { return 200 }
         else { return 100 }
     }
 }
 
 extension HomeViewController: UITableViewDataSource {
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // 데이터가 0개일 때 return 1을 해줘야 함, 데이터 갯수가 있을 떄는 그냥 리턴
         guard let data = data,
               data.count != 0 else {
             return 1
         }
-        return data.count
+        if section == 0 { return 1 }
+        return data[section-1].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard indexPath.row != 0 else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewGraphCell.identifier, for: indexPath) as? HomeTableViewGraphCell
-            
-            cell?.layout()
-            return cell ?? UITableViewCell()
+        guard let data = data,
+              data.count != 0 else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewEmptyCell.identifier, for: indexPath) as? HomeTableViewEmptyCell
+            else { return UITableViewCell() }
+            cell.layout()
+            cell.selectionStyle = .none
+            return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewPortfolioCell.identifier, for: indexPath) as? HomeTableViewPortfolioCell
-//        cell?.layout()
-        return cell ?? UITableViewCell()
+        if indexPath.row == 0 && indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewGraphCell.identifier, for: indexPath) as? HomeTableViewGraphCell
+            else { return UITableViewCell() }
+            cell.layout()
+            cell.selectionStyle = .none
+            return cell
+        }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewPortfolioCell.identifier, for: indexPath) as? HomeTableViewPortfolioCell
+        else { return UITableViewCell() }
+        cell.layout(portfolio: Portfolio.shared)
+        cell.selectionStyle = .none
+        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-         1 + (data?.count ?? 0)
+        guard let data = data,
+              data.count != 0 else {
+            return 1
+        }
+        return data.count+1
     }
+    
 }

@@ -119,12 +119,14 @@ final class LoginViewController: UIViewController {
     }()
     
     private func setTextField(_ placeholder: String, textField: UITextField) {
+        textField.delegate = self
+        
         textField.font = .systemFont(ofSize: 16.0, weight: .bold)
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [
                 .font: UIFont.systemFont(ofSize: 16.0, weight: .light),
-                .foregroundColor: UIColor.appColor(.baseGreen)
+                .foregroundColor: UIColor.appColor(.darkGreen)
             ])
         textField.textColor = .label
         textField.layer.cornerRadius = 5.0
@@ -140,13 +142,16 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout()
         bind(viewModel: viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         layout()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func bind(viewModel: LoginViewModel) {
@@ -212,7 +217,7 @@ final class LoginViewController: UIViewController {
         }
         
         logoImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(70.0)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(60.0)
             $0.centerX.equalTo(backgroundImageView.snp.centerX)
         }
 
@@ -247,6 +252,13 @@ final class LoginViewController: UIViewController {
             $0.trailing.equalTo(signinStackView.snp.trailing)
             $0.height.equalTo(48.0)
         }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

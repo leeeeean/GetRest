@@ -17,6 +17,7 @@
 		4BA7A7D029F29CC7004EC262 /* HomeTableViewGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */; };
 		4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */; };
 		4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */; };
+		4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7DA29F328CE004EC262 /* Portfolio.swift */; };
 		4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */; };
 		4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */; };
 		4BC4C09829ED5EAF00BF1DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4C09729ED5EAF00BF1DFE /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewGraphCell.swift; sourceTree = "<group>"; };
 		4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewQuarterHeaderView.swift; sourceTree = "<group>"; };
 		4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewPortfolioCell.swift; sourceTree = "<group>"; };
+		4BA7A7DA29F328CE004EC262 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		4BC4C08B29ED5EAD00BF1DFE /* GetRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +177,14 @@
 			path = CustomGraph;
 			sourceTree = "<group>";
 		};
+		4BA7A7D929F32880004EC262 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7DA29F328CE004EC262 /* Portfolio.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		4BC4C08229ED5EAD00BF1DFE = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 				4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */,
 				4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */,
 				4BC4C0D629EE818D00BF1DFE /* Extensions */,
+				4BA7A7D929F32880004EC262 /* Entity */,
 				4BC4C0D229EE702C00BF1DFE /* Network */,
 				4BC4C0C329ED606200BF1DFE /* Views */,
 				4BC4C09729ED5EAF00BF1DFE /* Assets.xcassets */,
@@ -592,6 +603,7 @@
 				4BA7A7C129F27BEF004EC262 /* UILabel+.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
+				4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
 				4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */,
 				4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */,

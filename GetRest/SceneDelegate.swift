@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-        window?.backgroundColor = .systemBackground
+        window?.overrideUserInterfaceStyle = .light
+        window?.backgroundColor = .appColor(.baseGreen)
         window?.makeKeyAndVisible()
     }
 

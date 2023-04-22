@@ -154,13 +154,38 @@ final class SigninViewController: UIViewController {
         return button
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.bounces = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isScrollEnabled = true
+        scrollView.isUserInteractionEnabled = true
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.overrideUserInterfaceStyle = .light
+        
+        return scrollView
+    }()
+    
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private lazy var keyboardView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     private func setLabel(_ text: String, label: UILabel) {
         label.text = text
         label.font = .systemFont(ofSize: 20.0, weight: .light)
-        label.textColor = .label
+        label.textColor = .black
     }
     
     private func setTextField(_ placeholder: String, textField: UITextField) {
+        textField.delegate = self
+        
         textField.font = .systemFont(ofSize: 16.0, weight: .bold)
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
@@ -188,14 +213,21 @@ final class SigninViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let viewModel = SigninViewModel()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         layout()
         bind(viewModel)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func bind(_ viewModel: SigninViewModel) {
         // 다썻어요 클릭시 - 팝업
         signinButton.rx.tap
@@ -229,6 +261,16 @@ final class SigninViewController: UIViewController {
         }
         notSameErrorLabel.isHidden = true
     }
+    
+    @objc func keyboardWillShow(_ sender: NSNotification) {
+        if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            view.frame.size.height = 1100
+        }
+    }
+    
+    @objc func keyboardWillHide(_ sender: NSNotification) {
+        view.frame.size.height =  view.safeAreaLayoutGuide.layoutFrame.height - 100
+    }
  
     private func layout() {
         title = "회원가입"
@@ -246,85 +288,107 @@ final class SigninViewController: UIViewController {
         navigationController?.navigationBar.layer.shadowOpacity = 0.2
         navigationController?.navigationBar.layer.masksToBounds = false
         
-        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.barTintColor = .white
         
-        [
-            backgroundImageView,
-            nameStackView,
-            idStackView,
-            passwordStackView,
-            checkPasswordStackView,
-            signinButton
-        ].forEach { view.addSubview($0) }
+        view.backgroundColor = .systemBackground
         
         let insetWithStack: CGFloat = 32.0
         let insetWithLabelTextField: CGFloat = 28.0
         let stackHeight: CGFloat = 100.0
-        
-        backgroundImageView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
+
+
+        view.frame.size.height = view.safeAreaLayoutGuide.layoutFrame.height-100
+
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints {
+            $0.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalToSuperview()
         }
-        
+
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints {
+            $0.edges.width.equalToSuperview()
+            $0.height.equalTo(self.view.safeAreaLayoutGuide.layoutFrame.height)
+        }
+
+        [backgroundImageView, nameStackView, idStackView, passwordStackView, checkPasswordStackView, signinButton]
+            .forEach { backgroundView.addSubview($0) }
+
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.snp.makeConstraints {
+            $0.leading.bottom.trailing.equalToSuperview()
+        }
+
         nameStackView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(insetWithStack)
+            $0.top.equalToSuperview().inset(insetWithStack)
             $0.leading.trailing.equalToSuperview().inset(insetWithLabelTextField)
             $0.height.equalTo(stackHeight)
         }
-        
+
         idStackView.snp.makeConstraints {
             $0.top.equalTo(nameStackView.snp.bottom).offset(insetWithStack)
             $0.leading.equalTo(nameStackView.snp.leading)
             $0.trailing.equalTo(nameStackView.snp.trailing)
             $0.height.equalTo(stackHeight)
         }
-        
+
         passwordStackView.snp.makeConstraints {
             $0.top.equalTo(idStackView.snp.bottom).offset(insetWithStack)
             $0.leading.equalTo(idStackView.snp.leading)
             $0.trailing.equalTo(idStackView.snp.trailing)
             $0.height.equalTo(stackHeight)
         }
-        
+
         checkPasswordStackView.snp.makeConstraints {
             $0.top.equalTo(passwordStackView.snp.bottom).offset(insetWithStack)
             $0.leading.equalTo(passwordStackView.snp.leading)
             $0.trailing.equalTo(passwordStackView.snp.trailing)
             $0.height.equalTo(stackHeight)
         }
-        
+
         signinButton.snp.makeConstraints {
             $0.top.equalTo(checkPasswordStackView.snp.bottom).offset(48.0)
             $0.leading.trailing.equalToSuperview().inset(56.0)
             $0.height.equalTo(48.0)
         }
+
+    }
+}
+
+extension SigninViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
 extension Reactive where Base: SigninViewController {
     var confirmAlert: Binder<Void> {
         return Binder(base) { base, void in
-//            해결 1
-//            let alertController = ConfirmCancleAlerViewController(
-//                image: UIImage(systemName: "circle")!,
-//                message: "회원가입이 완료되었어요",
-//                alertType: .onlyConfirm
-//            )
-//            alertController.modalPresentationStyle = .fullScreen
-//            base.present(alertController, animated: true)
+/*
+            해결 1
+            let alertController = ConfirmCancleAlerViewController(
+                image: UIImage(systemName: "circle")!,
+                message: "회원가입이 완료되었어요",
+                alertType: .onlyConfirm
+            )
+            alertController.modalPresentationStyle = .fullScreen
+            base.present(alertController, animated: true)
             
-//            해결 2
-//            let alertController = UIAlertController(title: "회원가입이 완료되었어요", message: nil, preferredStyle: .alert)
-//            let confirmActionButton = UIAlertAction(title: "확인", style: .default) { _ in
-//                print("회원가입")
-//                // MainViewController 진입
-//                let viewController = MainViewController()
-//                viewController.modalPresentationStyle = .fullScreen
-//                base.present(viewController, animated: true)
-//            }
-//
-//            alertController.addAction(confirmActionButton)
-//            base.present(alertController, animated: true)
-            
+            해결 2
+            let alertController = UIAlertController(title: "회원가입이 완료되었어요", message: nil, preferredStyle: .alert)
+            let confirmActionButton = UIAlertAction(title: "확인", style: .default) { _ in
+                print("회원가입")
+                // MainViewController 진입
+                let viewController = MainViewController()
+                viewController.modalPresentationStyle = .fullScreen
+                base.present(viewController, animated: true)
+            }
+
+            alertController.addAction(confirmActionButton)
+            base.present(alertController, animated: true)
+*/
 //            해결 3
             let alertController = ConfirmCancleAlerViewController(
                             image: UIImage(named: "SigninAlert")!,
@@ -332,7 +396,8 @@ extension Reactive where Base: SigninViewController {
                             alertType: .onlyConfirm) {
                                 print("회원가입")
                                 let vc = MainTabBarController()
-                                base.navigationController?.pushViewController(vc, animated: true)
+                                vc.modalPresentationStyle = .fullScreen
+                                base.present(vc, animated: true)
                             }
             alertController.modalPresentationStyle = .overFullScreen
             base.present(alertController, animated: true)
