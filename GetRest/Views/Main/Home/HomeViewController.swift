@@ -43,7 +43,7 @@ final class HomeViewController: UIViewController {
     }
     
     func bind() {
-        
+
     }
     
     private func layout() {
@@ -63,7 +63,6 @@ final class HomeViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
         navigationController?.navigationBar.backgroundColor = .appColor(.baseGreen)
         navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.setNavigationBarHidden(true, animated: true)
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints {

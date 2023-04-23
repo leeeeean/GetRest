@@ -29,6 +29,7 @@ final class SigninViewController: UIViewController {
     private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         setTextField("한들 또는 영문으로 씁시다", textField: textField)
+        textField.tag = 0
 
         return textField
     }()
@@ -51,7 +52,8 @@ final class SigninViewController: UIViewController {
     private lazy var idTextField: UITextField = {
         let textField = UITextField()
         setTextField("아이디", textField: textField)
-    
+        textField.tag = 1
+
         return textField
     }()
     
@@ -76,7 +78,8 @@ final class SigninViewController: UIViewController {
         textField.isSecureTextEntry = true
         textField.textContentType = .newPassword
         // ios keychain 적용할 수 있도록 나중에 바꿔보기
-        
+        textField.tag = 2
+
         return textField
     }()
     
@@ -124,6 +127,7 @@ final class SigninViewController: UIViewController {
         setTextField("한번 더 확인해봐요", textField: textField)
         textField.isSecureTextEntry = true
         textField.textContentType = .newPassword
+        textField.tag = 3
         
         return textField
     }()
@@ -156,12 +160,14 @@ final class SigninViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.bounces = false
+        scrollView.bounces = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isScrollEnabled = true
         scrollView.isUserInteractionEnabled = true
         scrollView.showsVerticalScrollIndicator = true
         scrollView.overrideUserInterfaceStyle = .light
+        scrollView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior(rawValue: 2)!
+        // safe area 빈 공간 없애기 --> rawValue: 2 == .never
         
         return scrollView
     }()
@@ -173,7 +179,7 @@ final class SigninViewController: UIViewController {
     
     private lazy var keyboardView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemBackground
         return view
     }()
     
@@ -214,6 +220,8 @@ final class SigninViewController: UIViewController {
     let disposeBag = DisposeBag()
     let viewModel = SigninViewModel()
     
+    private var keyboardOffset = 291.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -222,10 +230,6 @@ final class SigninViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
     
     func bind(_ viewModel: SigninViewModel) {
@@ -263,16 +267,20 @@ final class SigninViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(_ sender: NSNotification) {
-        if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            view.frame.size.height = 1100
-        }
+        let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        
+        keyboardOffset = keyboardSize!.size.height
     }
     
     @objc func keyboardWillHide(_ sender: NSNotification) {
-        view.frame.size.height =  view.safeAreaLayoutGuide.layoutFrame.height - 100
+        scrollView.setContentOffset(
+            CGPoint(x: 0, y: 0),
+            animated: true
+        )
     }
  
     private func layout() {
+        
         title = "회원가입"
         
         navigationController?.navigationBar.tintColor = .appColor(.baseGreen)
@@ -295,63 +303,97 @@ final class SigninViewController: UIViewController {
         let insetWithStack: CGFloat = 32.0
         let insetWithLabelTextField: CGFloat = 28.0
         let stackHeight: CGFloat = 100.0
-
-
-        view.frame.size.height = view.safeAreaLayoutGuide.layoutFrame.height-100
-
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
             $0.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalToSuperview()
         }
-
+        
+        
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(backgroundView)
         backgroundView.snp.makeConstraints {
-            $0.edges.width.equalToSuperview()
-            $0.height.equalTo(self.view.safeAreaLayoutGuide.layoutFrame.height)
+            $0.top.leading.trailing.equalTo(scrollView.contentLayoutGuide)
+            $0.bottom.equalTo(view.safeAreaInsets.bottom)
+            $0.width.equalToSuperview()
         }
-
-        [backgroundImageView, nameStackView, idStackView, passwordStackView, checkPasswordStackView, signinButton]
+        
+        [
+            nameStackView,
+            idStackView,
+            passwordStackView,
+            checkPasswordStackView,
+            signinButton,
+            backgroundImageView,
+            keyboardView
+        ]
             .forEach { backgroundView.addSubview($0) }
-
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImageView.snp.makeConstraints {
-            $0.leading.bottom.trailing.equalToSuperview()
-        }
-
+        
         nameStackView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(insetWithStack)
             $0.leading.trailing.equalToSuperview().inset(insetWithLabelTextField)
             $0.height.equalTo(stackHeight)
         }
-
+        
         idStackView.snp.makeConstraints {
             $0.top.equalTo(nameStackView.snp.bottom).offset(insetWithStack)
-            $0.leading.equalTo(nameStackView.snp.leading)
-            $0.trailing.equalTo(nameStackView.snp.trailing)
+            $0.leading.trailing.equalTo(nameStackView)
             $0.height.equalTo(stackHeight)
         }
-
+        
         passwordStackView.snp.makeConstraints {
             $0.top.equalTo(idStackView.snp.bottom).offset(insetWithStack)
-            $0.leading.equalTo(idStackView.snp.leading)
-            $0.trailing.equalTo(idStackView.snp.trailing)
+            $0.leading.trailing.equalTo(idStackView)
             $0.height.equalTo(stackHeight)
         }
-
+        
         checkPasswordStackView.snp.makeConstraints {
             $0.top.equalTo(passwordStackView.snp.bottom).offset(insetWithStack)
-            $0.leading.equalTo(passwordStackView.snp.leading)
-            $0.trailing.equalTo(passwordStackView.snp.trailing)
+            $0.leading.trailing.equalTo(passwordStackView)
             $0.height.equalTo(stackHeight)
         }
-
+        
         signinButton.snp.makeConstraints {
-            $0.top.equalTo(checkPasswordStackView.snp.bottom).offset(48.0)
+            $0.top.equalTo(checkPasswordStackView.snp.bottom ).offset(48.0)
             $0.leading.trailing.equalToSuperview().inset(56.0)
             $0.height.equalTo(48.0)
         }
+        
+        backgroundImageView.snp.makeConstraints {
+            $0.top.equalTo(signinButton.snp.bottom).inset(18.0)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(
+                view.frame.size.width *
+                backgroundImageView.image!.size.height /
+                375.0 // 아미지 이상으로 강제로 값 집어 넣음
+            )
+        }
+        
+        keyboardView.snp.makeConstraints {
+            $0.top.equalTo(backgroundImageView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(5)
+        }
+        
+        /*  1. scrollview superview에 가득 채우기
+                height 를 꼭 기본 크기보다 크게 주기
+            2. 스크롤 뷰가 가로로도 움직이 때문에 backgroud 뷰의 가로 고정하기
+                뷰의 top, bottom, leading, trailing 을
+                꼭 contentLayoutGuide에 맞춰주기
+            3. 뷰 안에 다른 뷰들을 넣어줌
+                꼭 superview top, bottom에는 제약이 걸려야함
+            4. 뷰의 길이가 스크롤뷰 길이보다 길어야 함!
+         */
+        
+        /* 문제 발생
+                textfield 에 값을 입력하려고 할때, 키보드가 올라옴
+                키보드가 스크롤 뷰, 텍스트 필드를 가리게 됨
+                스크롤 뷰 내에 뷰를 추가해서 이를 동적으로 크기를 조절하여
+                스크롤 뷰의 화면을 조절하려고 했음
+                그런데 추가한 뷰의 크기에 따라서 스크롤 뷰가 동적으로 변하지 않음..
+         */
 
     }
 }
@@ -359,6 +401,38 @@ final class SigninViewController: UIViewController {
 extension SigninViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        scrollView.setContentOffset(
+            CGPoint(x: 0, y: 291),
+            animated: true
+        )
+        keyboardView.snp.makeConstraints {
+            $0.height.equalTo(291)
+        }
+        scrollView.contentSize = CGSize(
+            width: scrollView.contentSize.width,
+            height: scrollView.contentSize.height + 291
+        )
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        scrollView.contentSize = CGSize(
+            width: scrollView.contentSize.width,
+            height: scrollView.contentSize.height - keyboardOffset
+        )
+        
+        keyboardView.snp.makeConstraints {
+            $0.height.equalTo(3)
+        }
+        
+//        scrollView.setContentOffset(
+//            CGPoint(x: 0, y: 0),
+//            animated: true
+//        )
         return true
     }
 }

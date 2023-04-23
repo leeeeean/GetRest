@@ -18,6 +18,13 @@
 		4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */; };
 		4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */; };
 		4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7DA29F328CE004EC262 /* Portfolio.swift */; };
+		4BA7A7DF29F4E3B3004EC262 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7DE29F4E3B3004EC262 /* WriteViewController.swift */; };
+		4BA7A7E129F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7E029F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift */; };
+		4BA7A7E329F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7E229F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift */; };
+		4BA7A7E729F5421F004EC262 /* WriteCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7E629F5421F004EC262 /* WriteCategory.swift */; };
+		4BA7A7EA29F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */; };
+		4BA7A7EC29F57184004EC262 /* TagButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */; };
+		4BA7A7EE29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */; };
 		4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */; };
 		4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */; };
 		4BC4C09829ED5EAF00BF1DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4C09729ED5EAF00BF1DFE /* Assets.xcassets */; };
@@ -73,6 +80,13 @@
 		4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewQuarterHeaderView.swift; sourceTree = "<group>"; };
 		4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewPortfolioCell.swift; sourceTree = "<group>"; };
 		4BA7A7DA29F328CE004EC262 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
+		4BA7A7DE29F4E3B3004EC262 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		4BA7A7E029F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BA7A7E229F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewTabBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BA7A7E629F5421F004EC262 /* WriteCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCategory.swift; sourceTree = "<group>"; };
+		4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTextFieldCollectionViewCell.swift; sourceTree = "<group>"; };
 		4BC4C08B29ED5EAD00BF1DFE /* GetRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,11 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */,
-				4BA7A7C429F28C8D004EC262 /* HomeTableViewEmptyCell.swift */,
-				4BA7A7C229F282BD004EC262 /* HomeTableViewHeaderView.swift */,
-				4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */,
-				4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */,
-				4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */,
+				4BA7A7DC29F48930004EC262 /* HomeViewCells */,
+				4BA7A7DD29F4894C004EC262 /* Headers */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -150,6 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */,
+				4BA7A7E829F54A53004EC262 /* PortfolioViewCells */,
+				4BA7A7DE29F4E3B3004EC262 /* WriteViewController.swift */,
+				4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */,
+				4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -181,8 +196,38 @@
 			isa = PBXGroup;
 			children = (
 				4BA7A7DA29F328CE004EC262 /* Portfolio.swift */,
+				4BA7A7E629F5421F004EC262 /* WriteCategory.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		4BA7A7DC29F48930004EC262 /* HomeViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7C429F28C8D004EC262 /* HomeTableViewEmptyCell.swift */,
+				4BA7A7CF29F29CC7004EC262 /* HomeTableViewGraphCell.swift */,
+				4BA7A7D729F3249C004EC262 /* HomeTableViewPortfolioCell.swift */,
+			);
+			path = HomeViewCells;
+			sourceTree = "<group>";
+		};
+		4BA7A7DD29F4894C004EC262 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7C229F282BD004EC262 /* HomeTableViewHeaderView.swift */,
+				4BA7A7D529F32447004EC262 /* HomeTableViewQuarterHeaderView.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		4BA7A7E829F54A53004EC262 /* PortfolioViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7E029F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift */,
+				4BA7A7E229F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift */,
+				4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */,
+			);
+			path = PortfolioViewCells;
 			sourceTree = "<group>";
 		};
 		4BC4C08229ED5EAD00BF1DFE = {
@@ -598,20 +643,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */,
+				4BA7A7EC29F57184004EC262 /* TagButtonCollectionViewCell.swift in Sources */,
 				4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */,
 				4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */,
 				4BA7A7C129F27BEF004EC262 /* UILabel+.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
 				4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */,
+				4BA7A7E729F5421F004EC262 /* WriteCategory.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
 				4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */,
 				4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */,
+				4BA7A7EE29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift in Sources */,
+				4BA7A7DF29F4E3B3004EC262 /* WriteViewController.swift in Sources */,
 				4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */,
 				4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */,
+				4BA7A7E329F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift in Sources */,
+				4BA7A7EA29F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift in Sources */,
 				4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */,
 				4BC4C0D129EE702700BF1DFE /* LoginModel.swift in Sources */,
 				4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */,
+				4BA7A7E129F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
 				4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */,

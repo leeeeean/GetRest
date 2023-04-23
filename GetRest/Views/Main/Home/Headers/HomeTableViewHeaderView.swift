@@ -61,7 +61,6 @@ final class HomeTableViewHeaderView: UITableViewHeaderFooterView {
         let height = imageHeight! * width / imageWidth!
         frame = CGRect(x: 0, y: 0, width: width, height: height)
         
-        backgroundColor = .systemBackground
         [imageView, label].forEach { addSubview($0) }
         
         imageView.snp.makeConstraints {
