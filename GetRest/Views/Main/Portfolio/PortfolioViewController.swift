@@ -147,15 +147,14 @@ extension PortfolioViewController: UICollectionViewDelegate {
             
             for i in 0..<6 {
                 let index = IndexPath(row: i, section: 0)
-                guard let cell = collectionView.cellForItem(at: index) as? PortfolioViewTabBarCollectionViewCell else { return }
-                if index == indexPath {
-                    cell.changeSelectedColor()
-                } else {
-                    cell.changeNotSelectedColor()
+                if let cell = collectionView.cellForItem(at: index) as? PortfolioViewTabBarCollectionViewCell {
+                    if index == indexPath { cell.changeSelectedColor() }
+                    else { cell.changeNotSelectedColor()}
                 }
             }
-            
+            categoryTabBarCollectionView.layoutIfNeeded()
             categoryTabBarCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            categoryPageViewCollectionView.layoutIfNeeded()
             categoryPageViewCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }

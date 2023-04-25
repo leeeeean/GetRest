@@ -25,6 +25,9 @@
 		4BA7A7EA29F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */; };
 		4BA7A7EC29F57184004EC262 /* TagButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */; };
 		4BA7A7EE29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */; };
+		4BA7A7F029F6D535004EC262 /* CategorySelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7EF29F6D535004EC262 /* CategorySelectViewController.swift */; };
+		4BA7A7F329F788C8004EC262 /* CategorySelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7F229F788C8004EC262 /* CategorySelectViewModel.swift */; };
+		4BA7A7F529F789C7004EC262 /* WriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7F429F789C7004EC262 /* WriteViewModel.swift */; };
 		4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */; };
 		4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */; };
 		4BC4C09829ED5EAF00BF1DFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4C09729ED5EAF00BF1DFE /* Assets.xcassets */; };
@@ -87,6 +90,9 @@
 		4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTextFieldCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BA7A7EF29F6D535004EC262 /* CategorySelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectViewController.swift; sourceTree = "<group>"; };
+		4BA7A7F229F788C8004EC262 /* CategorySelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectViewModel.swift; sourceTree = "<group>"; };
+		4BA7A7F429F789C7004EC262 /* WriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewModel.swift; sourceTree = "<group>"; };
 		4BC4C08B29ED5EAD00BF1DFE /* GetRest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetRest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC4C08E29ED5EAD00BF1DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC4C09029ED5EAD00BF1DFE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,9 +168,7 @@
 			children = (
 				4BA7A7BE29F226E2004EC262 /* PortfolioViewController.swift */,
 				4BA7A7E829F54A53004EC262 /* PortfolioViewCells */,
-				4BA7A7DE29F4E3B3004EC262 /* WriteViewController.swift */,
-				4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */,
-				4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */,
+				4BA7A7F129F7758B004EC262 /* Write */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -183,13 +187,6 @@
 				4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */,
 			);
 			path = CoverLetter;
-			sourceTree = "<group>";
-		};
-		4BA7A7C629F2933E004EC262 /* CustomGraph */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CustomGraph;
 			sourceTree = "<group>";
 		};
 		4BA7A7D929F32880004EC262 /* Entity */ = {
@@ -228,6 +225,17 @@
 				4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */,
 			);
 			path = PortfolioViewCells;
+			sourceTree = "<group>";
+		};
+		4BA7A7F129F7758B004EC262 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				4BA7A7DE29F4E3B3004EC262 /* WriteViewController.swift */,
+				4BA7A7F429F789C7004EC262 /* WriteViewModel.swift */,
+				4BA7A7EB29F57184004EC262 /* TagButtonCollectionViewCell.swift */,
+				4BA7A7ED29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift */,
+			);
+			path = Write;
 			sourceTree = "<group>";
 		};
 		4BC4C08229ED5EAD00BF1DFE = {
@@ -289,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0D929EE9F5A00BF1DFE /* CustomButton.swift */,
-				4BA7A7C629F2933E004EC262 /* CustomGraph */,
 				4BC4C0DB29EF93CE00BF1DFE /* Alert */,
 				4BC4C0D329EE7F5C00BF1DFE /* Signin */,
 				4BC4C0C529ED606D00BF1DFE /* Login */,
@@ -349,6 +356,8 @@
 			isa = PBXGroup;
 			children = (
 				4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift */,
+				4BA7A7EF29F6D535004EC262 /* CategorySelectViewController.swift */,
+				4BA7A7F229F788C8004EC262 /* CategorySelectViewModel.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -646,12 +655,15 @@
 				4BA7A7EC29F57184004EC262 /* TagButtonCollectionViewCell.swift in Sources */,
 				4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */,
 				4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */,
+				4BA7A7F029F6D535004EC262 /* CategorySelectViewController.swift in Sources */,
 				4BA7A7C129F27BEF004EC262 /* UILabel+.swift in Sources */,
+				4BA7A7F529F789C7004EC262 /* WriteViewModel.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
 				4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */,
 				4BA7A7E729F5421F004EC262 /* WriteCategory.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
+				4BA7A7F329F788C8004EC262 /* CategorySelectViewModel.swift in Sources */,
 				4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */,
 				4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */,
 				4BA7A7EE29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift in Sources */,

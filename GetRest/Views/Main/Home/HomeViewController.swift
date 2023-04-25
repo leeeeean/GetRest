@@ -62,8 +62,11 @@ final class HomeViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
         navigationController?.navigationBar.backgroundColor = .appColor(.baseGreen)
-        navigationController?.navigationBar.isTranslucent = false
-
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .appColor(.baseGreen)
+        appearance.shadowColor = .clear // remove navigationBar line
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()

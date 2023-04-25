@@ -113,7 +113,7 @@ final class LoginViewController: UIViewController {
         
         [signinLabel, signinButton]
             .forEach { stackView.addArrangedSubview($0) }
-        stackView.setCustomSpacing(16.0, after: signinLabel)
+        stackView.setCustomSpacing(12.0, after: signinLabel)
         
         return stackView
     }()

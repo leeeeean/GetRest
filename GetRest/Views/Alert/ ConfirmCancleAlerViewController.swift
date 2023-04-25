@@ -28,12 +28,12 @@ final class ConfirmCancleAlerViewController: UIViewController {
         return view
     }()
     
-        private lazy var alertView: UIView = {
-            let view = UIView()
-            view.backgroundColor = .white
-    
-            return view
-        }()
+    private lazy var alertView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+
+        return view
+    }()
     
     private lazy var alertImageView: UIImageView = {
         let imageView = UIImageView()

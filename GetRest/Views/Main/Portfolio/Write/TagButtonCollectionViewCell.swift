@@ -10,16 +10,15 @@ import UIKit
 final class TagButtonCollectionViewCell: UICollectionViewCell {
     static let identifier = "TagButtonCollectionViewCell"
     
-    private lazy var tagButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "WriteTagAddButton"), for: .normal)
-        
-        return button
+    lazy var tagImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image =  UIImage(named: "WriteTagAddButton")
+        return imageView
     }()
     
     func layout() {
-        addSubview(tagButton)
-        tagButton.snp.makeConstraints({
+        addSubview(tagImage)
+        tagImage.snp.makeConstraints({
             $0.top.bottom.leading.trailing.equalToSuperview()
         })
     }

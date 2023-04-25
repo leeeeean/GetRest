@@ -168,6 +168,7 @@ final class SigninViewController: UIViewController {
         scrollView.overrideUserInterfaceStyle = .light
         scrollView.contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior(rawValue: 2)!
         // safe area 빈 공간 없애기 --> rawValue: 2 == .never
+        scrollView.delegate = self
         
         return scrollView
     }()
@@ -230,6 +231,12 @@ final class SigninViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeKeboardHide))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
     }
     
     func bind(_ viewModel: SigninViewModel) {
@@ -239,46 +246,6 @@ final class SigninViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let id = idTextField.text,
-              let password = passwordTextField.text,
-              let name = nameTextField.text,
-              let checkPassword = checkPasswordTextField.text,
-              !id.isEmpty,
-              !password.isEmpty,
-              !name.isEmpty,
-              !checkPassword.isEmpty
-        else {
-            signinButton.isEnabled = false
-            return
-        }
-        signinButton.isEnabled = true
-    }
-    
-    @objc func checkPasswordIsSame(_ textField: UITextField) {
-        guard let password = passwordTextField.text,
-              let checkPassword = checkPasswordTextField.text,
-              password == checkPassword
-        else {
-            notSameErrorLabel.isHidden = false
-            return
-        }
-        notSameErrorLabel.isHidden = true
-    }
-    
-    @objc func keyboardWillShow(_ sender: NSNotification) {
-        let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        
-        keyboardOffset = keyboardSize!.size.height
-    }
-    
-    @objc func keyboardWillHide(_ sender: NSNotification) {
-        scrollView.setContentOffset(
-            CGPoint(x: 0, y: 0),
-            animated: true
-        )
-    }
- 
     private func layout() {
         
         title = "회원가입"
@@ -290,12 +257,10 @@ final class SigninViewController: UIViewController {
         ]
         // navigation bar 아래에 그림자를 만드는 법! -> backgroundColor을 넣어주고 shadow 설정
         navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 5)
         navigationController?.navigationBar.layer.shadowColor = UIColor.lightGray.cgColor
         navigationController?.navigationBar.layer.shadowOpacity = 0.2
         navigationController?.navigationBar.layer.masksToBounds = false
-        
         navigationController?.navigationBar.barTintColor = .white
         
         view.backgroundColor = .systemBackground
@@ -309,7 +274,6 @@ final class SigninViewController: UIViewController {
             $0.top.trailing.leading.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalToSuperview()
         }
-        
         
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(backgroundView)
@@ -374,7 +338,7 @@ final class SigninViewController: UIViewController {
             $0.top.equalTo(backgroundImageView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
-            $0.height.equalTo(5)
+            $0.height.equalTo(3)
         }
         
         /*  1. scrollview superview에 가득 채우기
@@ -394,7 +358,58 @@ final class SigninViewController: UIViewController {
                 스크롤 뷰의 화면을 조절하려고 했음
                 그런데 추가한 뷰의 크기에 따라서 스크롤 뷰가 동적으로 변하지 않음..
          */
+    }
+}
 
+extension SigninViewController {
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let id = idTextField.text,
+              let password = passwordTextField.text,
+              let name = nameTextField.text,
+              let checkPassword = checkPasswordTextField.text,
+              !id.isEmpty,
+              !password.isEmpty,
+              !name.isEmpty,
+              !checkPassword.isEmpty
+        else {
+            signinButton.isEnabled = false
+            return
+        }
+        signinButton.isEnabled = true
+    }
+    
+    @objc func checkPasswordIsSame(_ textField: UITextField) {
+        guard let password = passwordTextField.text,
+              let checkPassword = checkPasswordTextField.text,
+              password == checkPassword
+        else {
+            notSameErrorLabel.isHidden = false
+            return
+        }
+        notSameErrorLabel.isHidden = true
+    }
+    
+    @objc func keyboardWillShow(_ sender: NSNotification) {
+        let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        
+        keyboardOffset = keyboardSize!.size.height
+    }
+    
+    @objc func keyboardWillHide(_ sender: NSNotification) {
+        scrollView.setContentOffset(
+            CGPoint(x: 0, y: 0),
+            animated: true
+        )
+    }
+    
+    @objc func makeKeboardHide() {
+        view.endEditing(true)
+    }
+}
+
+extension SigninViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        view.endEditing(true)
     }
 }
 
@@ -406,15 +421,16 @@ extension SigninViewController: UITextFieldDelegate {
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         scrollView.setContentOffset(
-            CGPoint(x: 0, y: 291),
+            CGPoint(x: 0, y: keyboardOffset),
             animated: true
         )
         keyboardView.snp.makeConstraints {
-            $0.height.equalTo(291)
+            $0.height.equalTo(keyboardOffset)
+            keyboardView.invalidateIntrinsicContentSize()
         }
         scrollView.contentSize = CGSize(
             width: scrollView.contentSize.width,
-            height: scrollView.contentSize.height + 291
+            height: scrollView.contentSize.height + keyboardOffset
         )
         return true
     }
@@ -428,11 +444,6 @@ extension SigninViewController: UITextFieldDelegate {
         keyboardView.snp.makeConstraints {
             $0.height.equalTo(3)
         }
-        
-//        scrollView.setContentOffset(
-//            CGPoint(x: 0, y: 0),
-//            animated: true
-//        )
         return true
     }
 }
