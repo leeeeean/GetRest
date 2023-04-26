@@ -12,16 +12,8 @@ import RxSwift
 final class WriteViewModel {
     let disposeBag = DisposeBag()
     
-    let getCategory: Signal<String>
-    let giveCategory = PublishSubject<String>()
     
     init() {
-        getCategory = giveCategory
-            .map({ str in
-                print("giveCategory", str)
-                return str
-            })
-            .asSignal(onErrorJustReturn: "Error")
     }
     
 }

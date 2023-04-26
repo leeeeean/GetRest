@@ -17,12 +17,5 @@ final class CategorySelectViewModel {
     
     
     init() {
-        categorySelected
-            .map({ str in
-                print("categorySelected",str)
-                return str
-            })
-            .bind(to: writeViewModel.giveCategory)
-            .disposed(by: disposeBag)
     }
 }

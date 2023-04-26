@@ -279,9 +279,9 @@ extension Reactive where Base: LoginViewController {
     
     var moveToMainView: Binder<Void> {
         return Binder(base) { base, void in
-            let viewController = MainTabBarController()
-            viewController.modalPresentationStyle = .fullScreen
-            base.present(viewController, animated: true, completion: nil)
+            let vc = MainTabBarController()
+            vc.modalPresentationStyle = .fullScreen
+            base.present(vc, animated: true, completion: nil)
         }
     }
 }

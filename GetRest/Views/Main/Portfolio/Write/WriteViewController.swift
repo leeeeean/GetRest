@@ -106,8 +106,6 @@ final class WriteViewController: UIViewController {
         button.contentHorizontalAlignment = .leading
         button.isUserInteractionEnabled = true
         
-        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
-
         return button
     }()
     
@@ -226,7 +224,7 @@ final class WriteViewController: UIViewController {
         
         layout()
         bind(viewModel)
-        
+                
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(makeKeboardHide))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.isEnabled = true
@@ -237,8 +235,6 @@ final class WriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(self.categoryButton.titleLabel?.text)
-        print(self.categoryButton.titleLabel)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(whenKeyBoardHide),
@@ -261,17 +257,47 @@ final class WriteViewController: UIViewController {
     let categorySelectedViewModel = CategorySelectViewModel()
 
     func bind(_ viewModel: WriteViewModel) {
-        viewModel.getCategory
-            .asObservable()
-            .subscribe(onNext: { [weak self] category in
+        
+        categoryButton.rx.tap
+            .bind(onNext: { [weak self] _ in
                 guard let self else { return }
-                self.categoryButton.setTitle(category, for: .normal)
-                self.categoryButton.isEnabled = true
-                self.categoryButton.layoutIfNeeded()
-                self.categoryButton.setNeedsLayout()
-                print(self.categoryButton.titleLabel?.text)
-                print(self.categoryButton.titleLabel)
+                let vc = CategorySelectViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+                
+                vc.viewModel
+                    .categorySelected
+                    .bind(to: categoryButton.rx.title())
+                    .disposed(by: disposeBag)
+                vc.viewModel
+                    .categorySelected
+                    .bind(onNext: { [weak self] _ in
+                        guard let self else { return }
+                        self.categoryButton.setTitleColor(.label, for: .normal)
+                    })
+                    .disposed(by: disposeBag)
             })
+            .disposed(by: disposeBag)
+        
+        dateTextButton.rx.tap
+            .bind { [weak self] _ in
+                guard let self else { return }
+                let vc = CalendarViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
+                
+                vc.viewModel
+                    .setDate
+                    .bind(to: dateTextButton.rx.title())
+                    .disposed(by: disposeBag)
+                vc.viewModel
+                    .setDate
+                    .bind(onNext: { [weak self] _ in
+                        guard let self else { return }
+                        self.dateTextButton.setTitleColor(.label, for: .normal)
+                    })
+                    .disposed(by: disposeBag)
+            }
             .disposed(by: disposeBag)
     }
 
@@ -369,12 +395,6 @@ extension WriteViewController {
         
     }
     
-    @objc func categoryButtonTapped() {
-        let vc = CategorySelectViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true)
-    }
-    
     @objc func whenKeyBoardHide(notification: NSNotification) {
         scrollView.setContentOffset(
             CGPoint(x: 0, y: 0),
@@ -388,15 +408,30 @@ extension WriteViewController {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         let indexPath = IndexPath(row: textField.tag, section: 0)
-        data[textField.tag] = textField.text ?? ""
+        data[textField.tag] = textField.text ?? "-"
         UIView.animate(withDuration: 0.1, animations: {
             self.tagCollectionView.collectionViewLayout.invalidateLayout()
         })
+        print(data)
+
     }
     /* ************* cell의 레이아웃을 실시간으로 변경하는 방법 ******************
             collectionView.collectionViewLayout.invalidateLayout()
     */
     
+    @objc func longPressGoToDelete(_ gesture: UILongPressGestureRecognizer) {
+        let alert = UIAlertController(title: "삭제하시겠습니까?", message: nil, preferredStyle: .alert)
+        let cancleAction = UIAlertAction(title: "닫기", style: .cancel)
+        let confirmAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] _ in
+            guard let self else { return }
+            let index = gesture.view?.tag
+            gesture.minimumPressDuration = 1
+            self.data.remove(at: index!)
+            self.tagCollectionView.reloadData()
+        }
+        [cancleAction, confirmAction].forEach({ alert.addAction($0) })
+        present(alert, animated: true)
+    }
 }
 
 extension WriteViewController: UIScrollViewDelegate {
@@ -414,11 +449,7 @@ extension WriteViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let indexPath = IndexPath(row: textField.tag, section: 0)
         if textField.text == "" { data.remove(at: indexPath.row) }
-//        if textField.text != "" {
-//            data[textField.tag] = textField.text!
-//        } else {
-//            data.remove(at: indexPath.row)
-//        }
+        tagCollectionView.reloadData()
     }
 }
 extension WriteViewController: UITextViewDelegate {
@@ -469,7 +500,7 @@ extension WriteViewController: UITextViewDelegate {
             textView.textColor = .label
         }
         
-        var enterCount = textView.text.filter{ $0 == "\n"}.count
+        let enterCount = textView.text.filter{ $0 == "\n"}.count
         if enterCount >= 5 {
             let lineHeight: CGFloat = CGFloat(textView.font!.lineHeight) * CGFloat((enterCount - 5))
             
@@ -506,14 +537,11 @@ extension WriteViewController: UICollectionViewDelegateFlowLayout {
             guard textCount != 0 else {
                 return CGSize(width: 60.0, height: 24.0)
             }
+            if data[indexPath.row] == "-" { return CGSize(width: 0, height: 0) }
             let textFieldStringWidth = cell.tagTextField.intrinsicContentSize.width
 
             return CGSize(width: textFieldStringWidth, height: 24.0)
         } else {
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: TagButtonCollectionViewCell.identifier,
-                for: indexPath
-            ) as? TagButtonCollectionViewCell else { return .zero }
             return CGSize(width: 24.0, height: 24.0)
         }
     }
@@ -536,7 +564,9 @@ extension WriteViewController: UICollectionViewDataSource {
                 action: #selector(textFieldDidChange),
                 for: .editingChanged
             )
-            
+            let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressGoToDelete))
+            gesture.view?.tag = indexPath.row
+            cell.tagTextField.addGestureRecognizer(gesture)
             return cell
         } else {
             guard let cell = collectionViews.dequeueReusableCell(withReuseIdentifier: TagButtonCollectionViewCell.identifier, for: indexPath) as? TagButtonCollectionViewCell else { return UICollectionViewCell() }

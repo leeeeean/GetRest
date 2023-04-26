@@ -56,7 +56,6 @@ final class CategorySelectViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let viewModel = CategorySelectViewModel()
-    let writeViewController = WriteViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,17 +70,14 @@ final class CategorySelectViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    let category = ["categoryData", "학교활동", "공모전", "경력사항", "기타"]
+    var category = ["대외활동", "학교활동", "공모전", "경력사항", "기타"]
     func bind(_ viewModel: CategorySelectViewModel) {
-        writeViewController.bind(viewModel.writeViewModel)
-        // ?????????? 뭐지??? 이게 다른 뷰 모델과 연결시켜줘............ 이유가 뭘까?????
         
         categoryTableView.rx.itemSelected
-            .asObservable()
             .map { [weak self] indexPath -> String in
-                self?.dismiss(animated: true)
-                print("itemSelected", self?.category[indexPath.row])
-                return self?.category[indexPath.row] ?? "이런ㅜㅜ"
+                guard let self else { return "" }
+                self.dismiss(animated: true)
+                return self.category[indexPath.row]
             }
             .bind(to: viewModel.categorySelected)
             .disposed(by: disposeBag)
