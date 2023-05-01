@@ -90,7 +90,7 @@ final class LoginViewController: UIViewController {
             enabled: UIColor.appColor(.darkGreen),
             disabled: UIColor.white
         )
-        button.isEnabled = false
+        button.isEnabled = true
         return button
     }()
     

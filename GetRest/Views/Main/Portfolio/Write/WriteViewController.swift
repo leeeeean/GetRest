@@ -39,11 +39,31 @@ final class WriteViewController: UIViewController {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "WirteAddImageButton")
-        imageView.contentMode = .scaleAspectFit
-        
+        imageView.contentMode = .scaleAspectFill
+
         return imageView
     }()
+    
+    private lazy var imageButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "WriteAddImageButton"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(touchImageButton), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    private lazy var cornerImageButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "WriteCornerImageButton"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(touchImageButton), for: .touchUpInside)
+        button.isHidden = true
+        
+        return button
+    }()
+    
+    private let imagePickerController = UIImagePickerController()
     
     private lazy var writeView: UIView = {
         let view = UIView()
@@ -71,6 +91,7 @@ final class WriteViewController: UIViewController {
             attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         )
         textField.delegate = self
+        textField.tag = -1
 
         return textField
     }()
@@ -219,6 +240,8 @@ final class WriteViewController: UIViewController {
     }()
     
     private var keyboardOffset = 291.0
+//    var data: [String] = ["동아리", "직장", "제주도", "유럽", "파리"]
+    var data: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -255,7 +278,7 @@ final class WriteViewController: UIViewController {
     let disposeBag = DisposeBag()
     let viewModel = WriteViewModel()
     let categorySelectedViewModel = CategorySelectViewModel()
-
+    
     func bind(_ viewModel: WriteViewModel) {
         
         categoryButton.rx.tap
@@ -337,11 +360,19 @@ final class WriteViewController: UIViewController {
             $0.height.equalTo(10.0)
         })
         
-        backgroundView.addSubview(imageView)
-        imageView.snp.makeConstraints{
+        [imageButton, imageView, cornerImageButton].forEach{ backgroundView.addSubview($0) }
+        imageButton.snp.makeConstraints{
             $0.top.equalToSuperview().inset(40.0)
             $0.centerX.equalToSuperview()
             $0.height.equalTo(140.0)
+        }
+        imageView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        cornerImageButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(16.0)
+            $0.bottom.equalToSuperview().inset(32.0)
+            $0.height.equalTo(32.0)
         }
         
         [
@@ -387,10 +418,17 @@ final class WriteViewController: UIViewController {
             .forEach({ titleCategoryDateStackView.addArrangedSubview($0) })
         
     }
-    var data = ["동아ddddd리","ddddd직장", "손ddd해보험", "제주도"]
 }
 
 extension WriteViewController {
+    
+    @objc func touchImageButton() {
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        
+        present(imagePickerController, animated: true)
+    }
+    
     @objc func saveButtonTapped() {
         
     }
@@ -407,13 +445,11 @@ extension WriteViewController {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        let indexPath = IndexPath(row: textField.tag, section: 0)
-        data[textField.tag] = textField.text ?? "-"
+        print(data)
+        data[textField.tag] = textField.text!
         UIView.animate(withDuration: 0.1, animations: {
             self.tagCollectionView.collectionViewLayout.invalidateLayout()
         })
-        print(data)
-
     }
     /* ************* cell의 레이아웃을 실시간으로 변경하는 방법 ******************
             collectionView.collectionViewLayout.invalidateLayout()
@@ -434,6 +470,26 @@ extension WriteViewController {
     }
 }
 
+extension WriteViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageView.image = image
+            imageButton.isHidden = true
+            cornerImageButton.isHidden = false
+        }
+        
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}
+
+extension WriteViewController: UINavigationControllerDelegate {
+    
+}
+
 extension WriteViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         view.endEditing(true)
@@ -447,9 +503,21 @@ extension WriteViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let indexPath = IndexPath(row: textField.tag, section: 0)
-        if textField.text == "" { data.remove(at: indexPath.row) }
-        tagCollectionView.reloadData()
+        if textField.tag == -1 {
+            
+        } else {
+            print("didEndediting")
+            print(data)
+            data[textField.tag] = textField.text!
+            
+            if textField.text == "" {
+                print("empty");
+                DispatchQueue.main.async {
+                    self.data.remove(at: textField.tag)
+                    self.tagCollectionView.reloadData()
+                }
+            }
+        }
     }
 }
 extension WriteViewController: UITextViewDelegate {
@@ -519,13 +587,14 @@ extension WriteViewController: UITextViewDelegate {
             print(scrollView.contentSize)
             scrollView.invalidateIntrinsicContentSize()
         }
-        
     }
 }
 
 extension WriteViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.row < data.count {
+        print("sizeForItemAt")
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        if indexPath.row < numberOfItems-1 {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: TagTextFieldCollectionView.identifier,
                 for: indexPath
@@ -537,9 +606,8 @@ extension WriteViewController: UICollectionViewDelegateFlowLayout {
             guard textCount != 0 else {
                 return CGSize(width: 60.0, height: 24.0)
             }
-            if data[indexPath.row] == "-" { return CGSize(width: 0, height: 0) }
+            
             let textFieldStringWidth = cell.tagTextField.intrinsicContentSize.width
-
             return CGSize(width: textFieldStringWidth, height: 24.0)
         } else {
             return CGSize(width: 24.0, height: 24.0)
@@ -549,10 +617,12 @@ extension WriteViewController: UICollectionViewDelegateFlowLayout {
 
 extension WriteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.count + 1
+        print("numberOfItemInSection : \(data.count+1)")
+        return data.count + 1
     }
     
     func collectionView(_ collectionViews: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("cellForItemAt")
         if indexPath.row < data.count {
             guard let cell = collectionViews.dequeueReusableCell(withReuseIdentifier: TagTextFieldCollectionView.identifier, for: indexPath) as? TagTextFieldCollectionView else { return UICollectionViewCell() }
             cell.layout()
@@ -574,28 +644,40 @@ extension WriteViewController: UICollectionViewDataSource {
             return cell
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let _ = collectionView.cellForItem(at: indexPath) as? TagButtonCollectionViewCell else { return }
-        guard let cell = collectionView.cellForItem(
-            at: IndexPath(
-                row: indexPath.row - 1,
-                section: 0
-            )
-        ) as? TagTextFieldCollectionView else { return }
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        print("didselectitemat")
+        if indexPath.row != 0 {
+            guard let cell = collectionView.cellForItem(
+                at: IndexPath(
+                    row: indexPath.row - 1,
+                    section: 0
+                )
+            ) as? TagTextFieldCollectionView else { return }
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
 
-        if cell.tagTextField.text == "" {
-            return
+            if cell.tagTextField.text == "" {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.data.append("")
+            }
+            print(data)
+            collectionView.reloadData()
+
+            collectionView.setContentOffset(CGPoint(
+                x: collectionView.contentOffset.x + 60,
+                y: 0
+            ), animated: true)
+        } else {
+            DispatchQueue.main.async {
+                self.data.append("")
+            }
+            print(data)
+            collectionView.reloadData()
         }
-        data.append("")
-        collectionView.reloadData()
-
-        collectionView.setContentOffset(CGPoint(x: collectionView.contentOffset.x + 80, y: 0), animated: true)
-        
     }
-    
 }
 
 extension WriteViewController: UICollectionViewDelegate {

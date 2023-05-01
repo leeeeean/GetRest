@@ -71,7 +71,6 @@ final class CalendarViewController: UIViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.isHidden = false
-        pickerView.backgroundColor = .blue
         return pickerView
     }()
     
@@ -80,7 +79,6 @@ final class CalendarViewController: UIViewController {
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.isHidden = true
-        pickerView.backgroundColor = .red
         return pickerView
     }()
     
