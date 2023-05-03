@@ -133,13 +133,16 @@ final class ConfirmCancleAlerViewController: UIViewController {
     func bind() {
         confirmButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.confirmButtonTapped(state: true)
+                self?.dismiss(animated: true)
+                self?.completion()
+//                self?.confirmButtonTapped(state: true)
             })
             .disposed(by: disposeBag)
         
         cancleButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.cancleButtonTapped()
+                self?.dismiss(animated: true)
+//                self?.cancleButtonTapped()
             })
             .disposed(by: disposeBag)
     }
@@ -156,13 +159,11 @@ final class ConfirmCancleAlerViewController: UIViewController {
     private func layout() {
         view.backgroundColor = .clear
         
-        [backgroundView, alertView, alertImageView, alertMessageLabel, buttonStackView]
+        [backgroundView, alertView]
             .forEach { view.addSubview($0) }
-        
         backgroundView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
-        
         alertView.snp.makeConstraints {
             $0.center.equalTo(backgroundView.snp.center)
             $0.width.equalTo(250.0)
@@ -171,28 +172,25 @@ final class ConfirmCancleAlerViewController: UIViewController {
                 $0.height.equalTo(150.0)
                 return
             }
-            $0.height.equalTo(250.0)
+            $0.height.equalTo(300.0)
         }
         
+        [alertImageView, alertMessageLabel, buttonStackView]
+            .forEach { alertView.addSubview($0) }
         alertImageView.snp.makeConstraints {
-            $0.top.equalTo(alertView.snp.top)
-            $0.leading.equalTo(alertView.snp.leading)
-            $0.trailing.equalTo(alertView.snp.trailing)
+            $0.top.equalToSuperview().inset(30.0)
+            $0.centerX.equalToSuperview()
             if image == nil { $0.height.equalTo(0.0) }
             else { $0.height.equalTo(150.0) }
         }
-        
         alertMessageLabel.snp.makeConstraints {
             $0.top.equalTo(alertImageView.snp.bottom)
             $0.centerX.equalTo(alertImageView.snp.centerX)
             if message == nil { $0.height.equalTo(0.0) }
         }
-        
         buttonStackView.snp.makeConstraints {
-            $0.top.equalTo(alertMessageLabel.snp.bottom)
-            $0.leading.equalTo(alertImageView.snp.leading)
-            $0.trailing.equalTo(alertImageView.snp.trailing)
-            $0.bottom.equalTo(alertView.snp.bottom)
+//            $0.top.equalTo(alertMessageLabel.snp.bottom)
+            $0.bottom.leading.trailing.equalToSuperview()
             $0.height.equalTo(50.0)
         }
     }

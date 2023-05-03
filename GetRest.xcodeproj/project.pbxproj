@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		4B15880929F86802007C3590 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880829F86802007C3590 /* CalendarViewController.swift */; };
 		4B15880B29F8C55D007C3590 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880A29F8C55D007C3590 /* CalendarViewModel.swift */; };
+		4B15880F29FFBFAD007C3590 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880E29FFBFAD007C3590 /* MyPageViewController.swift */; };
+		4B15881129FFD714007C3590 /* MyPagePasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881029FFD714007C3590 /* MyPagePasswordChangeViewController.swift */; };
+		4B15881329FFD7B0007C3590 /* MyPageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881229FFD7B0007C3590 /* MyPageSettingViewController.swift */; };
+		4B1588152A0252E9007C3590 /* TermsOfUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588142A0252E9007C3590 /* TermsOfUse.swift */; };
+		4B1588172A0252F7007C3590 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588162A0252F7007C3590 /* PrivacyPolicy.swift */; };
+		4B1588192A025304007C3590 /* Withdrawal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588182A025304007C3590 /* Withdrawal.swift */; };
+		4B15881B2A025313007C3590 /* Inquiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881A2A025313007C3590 /* Inquiry.swift */; };
+		4B15881D2A025322007C3590 /* OpenSourceLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881C2A025322007C3590 /* OpenSourceLicense.swift */; };
 		4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */; };
 		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
 		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
@@ -76,6 +84,14 @@
 		43EA8D9A8AC0E4727790C725 /* Pods-GetRest-GetRestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRest-GetRestUITests.release.xcconfig"; path = "Target Support Files/Pods-GetRest-GetRestUITests/Pods-GetRest-GetRestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4B15880829F86802007C3590 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4B15880A29F8C55D007C3590 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		4B15880E29FFBFAD007C3590 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		4B15881029FFD714007C3590 /* MyPagePasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePasswordChangeViewController.swift; sourceTree = "<group>"; };
+		4B15881229FFD7B0007C3590 /* MyPageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSettingViewController.swift; sourceTree = "<group>"; };
+		4B1588142A0252E9007C3590 /* TermsOfUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUse.swift; sourceTree = "<group>"; };
+		4B1588162A0252F7007C3590 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
+		4B1588182A025304007C3590 /* Withdrawal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdrawal.swift; sourceTree = "<group>"; };
+		4B15881A2A025313007C3590 /* Inquiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inquiry.swift; sourceTree = "<group>"; };
+		4B15881C2A025322007C3590 /* OpenSourceLicense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicense.swift; sourceTree = "<group>"; };
 		4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
@@ -157,12 +173,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B15880D29FFBED6007C3590 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				4B15880E29FFBFAD007C3590 /* MyPageViewController.swift */,
+				4B15881029FFD714007C3590 /* MyPagePasswordChangeViewController.swift */,
+				4B15881229FFD7B0007C3590 /* MyPageSettingViewController.swift */,
+				4B15881E2A02532B007C3590 /* Privacy */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		4B15881E2A02532B007C3590 /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				4B1588142A0252E9007C3590 /* TermsOfUse.swift */,
+				4B1588162A0252F7007C3590 /* PrivacyPolicy.swift */,
+				4B1588182A025304007C3590 /* Withdrawal.swift */,
+				4B15881A2A025313007C3590 /* Inquiry.swift */,
+				4B15881C2A025322007C3590 /* OpenSourceLicense.swift */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
 		4BA7A7B429F225F7004EC262 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */,
 				4BA7A7DC29F48930004EC262 /* HomeViewCells */,
 				4BA7A7DD29F4894C004EC262 /* Headers */,
+				4B15880D29FFBED6007C3590 /* MyPage */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -667,9 +707,11 @@
 				4BA7A7F529F789C7004EC262 /* WriteViewModel.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
+				4B1588192A025304007C3590 /* Withdrawal.swift in Sources */,
 				4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */,
 				4BA7A7E729F5421F004EC262 /* WriteCategory.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
+				4B1588152A0252E9007C3590 /* TermsOfUse.swift in Sources */,
 				4BA7A7F329F788C8004EC262 /* CategorySelectViewModel.swift in Sources */,
 				4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */,
 				4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */,
@@ -678,15 +720,21 @@
 				4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */,
 				4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */,
 				4BA7A7E329F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift in Sources */,
+				4B15881129FFD714007C3590 /* MyPagePasswordChangeViewController.swift in Sources */,
 				4BA7A7EA29F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift in Sources */,
 				4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */,
+				4B15881D2A025322007C3590 /* OpenSourceLicense.swift in Sources */,
 				4BC4C0D129EE702700BF1DFE /* LoginModel.swift in Sources */,
 				4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */,
 				4BA7A7E129F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift in Sources */,
+				4B1588172A0252F7007C3590 /* PrivacyPolicy.swift in Sources */,
 				4B15880B29F8C55D007C3590 /* CalendarViewModel.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
 				4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */,
+				4B15881B2A025313007C3590 /* Inquiry.swift in Sources */,
+				4B15880F29FFBFAD007C3590 /* MyPageViewController.swift in Sources */,
+				4B15881329FFD7B0007C3590 /* MyPageSettingViewController.swift in Sources */,
 				4BC4C0CF29EE701F00BF1DFE /* LoginViewModel.swift in Sources */,
 				4BA7A7D029F29CC7004EC262 /* HomeTableViewGraphCell.swift in Sources */,
 				4BC4C0DD29EF941F00BF1DFE /*  ConfirmCancleAlerViewController.swift in Sources */,

@@ -57,7 +57,7 @@ final class HomeViewController: UIViewController {
             image: UIImage(systemName: "person.fill"),
             style: .plain,
             target: self,
-            action: nil)
+            action: #selector(myPageButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = .white
         
         navigationController?.navigationBar.barTintColor = .appColor(.baseGreen)
@@ -75,6 +75,13 @@ final class HomeViewController: UIViewController {
 }
 
 var data: [[Int]]? = [[1,2,3], [1,2], [1,2,3,4]]
+
+extension HomeViewController {
+    @objc func myPageButtonTapped() {
+        let vc = MyPageViewController(name: name, accountID: "getrest1234")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

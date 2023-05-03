@@ -272,8 +272,8 @@ extension Reactive where Base: LoginViewController {
     
     var moveToSigninView: Binder<Void> {
         return Binder(base) { base, void in
-            let viewController = SigninViewController()
-            base.navigationController?.pushViewController(viewController, animated: true)
+            let vc = SigninViewController()
+            base.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
