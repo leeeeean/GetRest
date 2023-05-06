@@ -140,9 +140,14 @@ extension JobPostViewController: HeaderButtonTappedDelegate {
         let vc = JobPostCalendarViewController()
         vc.modalPresentationStyle = .overFullScreen
         vc.currentDate = date
-        vc.delegate = self
+        vc.delegate = self // JobPostViewController <-> JobPostCalendarViewController
         
         present(vc, animated: true)
+    }
+    
+    func headerFilterButtonTapped() {
+        let vc = JobPostFilterViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -169,7 +174,7 @@ extension JobPostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: JobPostHeaderView.identifier) as? JobPostHeaderView else { return UIView() }
         headerView.delegate = self
-        delegate = headerView
+        delegate = headerView // JobPostViewController <-> JobPostHeaderView
         
         return headerView
     }

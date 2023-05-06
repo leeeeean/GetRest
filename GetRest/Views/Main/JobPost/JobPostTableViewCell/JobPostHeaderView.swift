@@ -10,6 +10,7 @@ import UIKit
 protocol HeaderButtonTappedDelegate: AnyObject {
     func headerStarButtonTapped(isStarFill: Bool)
     func headerCalendarButtonTapped(date: String)
+    func headerFilterButtonTapped()
 }
 
 final class JobPostHeaderView: UITableViewHeaderFooterView {
@@ -111,13 +112,11 @@ final class JobPostHeaderView: UITableViewHeaderFooterView {
 
 extension JobPostHeaderView {
     @objc func calendarButtonTapped(_ button: UIButton) {
-        print("calendar")
         delegate?.headerCalendarButtonTapped(date: calendarLabel.text ?? "2012.01.01")
     }
     
     @objc func filterButtonTapped(_ button: UIButton) {
-        print("filter")
-        // filter view
+        delegate?.headerFilterButtonTapped()
     }
     
     @objc func starButtonTapped(_ button: UIButton) {

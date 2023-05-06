@@ -20,8 +20,11 @@
 		4B1588202A0275FE007C3590 /* JobPostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */; };
 		4B1588222A027633007C3590 /* JobPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588212A027633007C3590 /* JobPostTableViewCell.swift */; };
 		4B3185972A060C2400EEB2B7 /* JobPostCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185962A060C2400EEB2B7 /* JobPostCalendarViewController.swift */; };
-		4B3185992A06179D00EEB2B7 /* JobPostCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185982A06179D00EEB2B7 /* JobPostCalendarViewModel.swift */; };
 		4B31859B2A06182D00EEB2B7 /* JobPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */; };
+		4B31859D2A06411800EEB2B7 /* JobPostFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31859C2A06411800EEB2B7 /* JobPostFilterViewController.swift */; };
+		4B31859F2A0643F800EEB2B7 /* JobPostFilterCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31859E2A0643F800EEB2B7 /* JobPostFilterCategory.swift */; };
+		4B3185A22A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */; };
+		4B3185A42A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */; };
 		4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */; };
 		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
 		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
@@ -100,8 +103,11 @@
 		4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostHeaderView.swift; sourceTree = "<group>"; };
 		4B1588212A027633007C3590 /* JobPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostTableViewCell.swift; sourceTree = "<group>"; };
 		4B3185962A060C2400EEB2B7 /* JobPostCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCalendarViewController.swift; sourceTree = "<group>"; };
-		4B3185982A06179D00EEB2B7 /* JobPostCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCalendarViewModel.swift; sourceTree = "<group>"; };
 		4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewModel.swift; sourceTree = "<group>"; };
+		4B31859C2A06411800EEB2B7 /* JobPostFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterViewController.swift; sourceTree = "<group>"; };
+		4B31859E2A0643F800EEB2B7 /* JobPostFilterCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterCategory.swift; sourceTree = "<group>"; };
+		4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterViewCollectionViewHeader.swift; sourceTree = "<group>"; };
 		4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +212,15 @@
 			path = Privacy;
 			sourceTree = "<group>";
 		};
+		4B3185A02A06458200EEB2B7 /* JobPostTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */,
+				4B1588212A027633007C3590 /* JobPostTableViewCell.swift */,
+			);
+			path = JobPostTableViewCell;
+			sourceTree = "<group>";
+		};
 		4BA7A7B429F225F7004EC262 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,9 +246,11 @@
 			isa = PBXGroup;
 			children = (
 				4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */,
-				4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */,
-				4B1588212A027633007C3590 /* JobPostTableViewCell.swift */,
 				4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */,
+				4B3185A02A06458200EEB2B7 /* JobPostTableViewCell */,
+				4B31859C2A06411800EEB2B7 /* JobPostFilterViewController.swift */,
+				4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */,
+				4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */,
 			);
 			path = JobPost;
 			sourceTree = "<group>";
@@ -251,6 +268,7 @@
 			children = (
 				4BA7A7DA29F328CE004EC262 /* Portfolio.swift */,
 				4BA7A7E629F5421F004EC262 /* WriteCategory.swift */,
+				4B31859E2A0643F800EEB2B7 /* JobPostFilterCategory.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -418,7 +436,6 @@
 				4B15880829F86802007C3590 /* PortfolioCalendarViewController.swift */,
 				4B15880A29F8C55D007C3590 /* PortfolioCalendarViewModel.swift */,
 				4B3185962A060C2400EEB2B7 /* JobPostCalendarViewController.swift */,
-				4B3185982A06179D00EEB2B7 /* JobPostCalendarViewModel.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -712,6 +729,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B3185A42A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift in Sources */,
 				4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */,
 				4BA7A7EC29F57184004EC262 /* TagButtonCollectionViewCell.swift in Sources */,
 				4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */,
@@ -722,8 +740,8 @@
 				4BA7A7F529F789C7004EC262 /* WriteViewModel.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
-				4B3185992A06179D00EEB2B7 /* JobPostCalendarViewModel.swift in Sources */,
 				4B1588192A025304007C3590 /* Withdrawal.swift in Sources */,
+				4B31859F2A0643F800EEB2B7 /* JobPostFilterCategory.swift in Sources */,
 				4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */,
 				4BA7A7E729F5421F004EC262 /* WriteCategory.swift in Sources */,
 				4BC4C0DA29EE9F5A00BF1DFE /* CustomButton.swift in Sources */,
@@ -736,7 +754,9 @@
 				4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */,
 				4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */,
 				4BA7A7E329F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift in Sources */,
+				4B31859D2A06411800EEB2B7 /* JobPostFilterViewController.swift in Sources */,
 				4B15881129FFD714007C3590 /* MyPagePasswordChangeViewController.swift in Sources */,
+				4B3185A22A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift in Sources */,
 				4BA7A7EA29F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift in Sources */,
 				4BC4C0D529EE7F7200BF1DFE /* SigninViewController.swift in Sources */,
 				4B15881D2A025322007C3590 /* OpenSourceLicense.swift in Sources */,
