@@ -101,7 +101,7 @@ extension HomeViewController: UITableViewDelegate {
         }
 
         if indexPath.row == 0 && indexPath.section == 0 { return 200 }
-        else { return 100 }
+        return 100
     }
 }
 

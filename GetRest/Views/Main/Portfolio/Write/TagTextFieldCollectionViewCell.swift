@@ -19,7 +19,6 @@ final class TagTextFieldCollectionView: UICollectionViewCell {
         textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 16.0, height: 1.0))
         textField.leftViewMode = .always
         textField.rightViewMode = .always
-        textField.text = "동아리"
         textField.font = .systemFont(ofSize: 16.0)
         textField.tintColor = .white
         textField.delegate = viewController
@@ -27,7 +26,7 @@ final class TagTextFieldCollectionView: UICollectionViewCell {
         return textField
     }()
     
-    private let viewController = WriteViewController()
+    private weak var viewController = WriteViewController()
     
     func layout() {
         addSubview(tagTextField)

@@ -17,6 +17,8 @@
 		4B1588192A025304007C3590 /* Withdrawal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588182A025304007C3590 /* Withdrawal.swift */; };
 		4B15881B2A025313007C3590 /* Inquiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881A2A025313007C3590 /* Inquiry.swift */; };
 		4B15881D2A025322007C3590 /* OpenSourceLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881C2A025322007C3590 /* OpenSourceLicense.swift */; };
+		4B1588202A0275FE007C3590 /* JobPostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */; };
+		4B1588222A027633007C3590 /* JobPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588212A027633007C3590 /* JobPostTableViewCell.swift */; };
 		4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */; };
 		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
 		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
@@ -92,6 +94,8 @@
 		4B1588182A025304007C3590 /* Withdrawal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Withdrawal.swift; sourceTree = "<group>"; };
 		4B15881A2A025313007C3590 /* Inquiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inquiry.swift; sourceTree = "<group>"; };
 		4B15881C2A025322007C3590 /* OpenSourceLicense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicense.swift; sourceTree = "<group>"; };
+		4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostHeaderView.swift; sourceTree = "<group>"; };
+		4B1588212A027633007C3590 /* JobPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostTableViewCell.swift; sourceTree = "<group>"; };
 		4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */,
+				4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */,
+				4B1588212A027633007C3590 /* JobPostTableViewCell.swift */,
 			);
 			path = JobPost;
 			sourceTree = "<group>";
@@ -727,8 +733,10 @@
 				4BC4C0D129EE702700BF1DFE /* LoginModel.swift in Sources */,
 				4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */,
 				4BA7A7E129F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift in Sources */,
+				4B1588202A0275FE007C3590 /* JobPostHeaderView.swift in Sources */,
 				4B1588172A0252F7007C3590 /* PrivacyPolicy.swift in Sources */,
 				4B15880B29F8C55D007C3590 /* CalendarViewModel.swift in Sources */,
+				4B1588222A027633007C3590 /* JobPostTableViewCell.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
 				4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */,
