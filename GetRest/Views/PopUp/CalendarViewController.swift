@@ -92,7 +92,7 @@ final class CalendarViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var cancleButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("취소", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -114,7 +114,7 @@ final class CalendarViewController: UIViewController {
         return button
     }()
     
-    private lazy var cancleConfirmStackView: UIStackView = {
+    private lazy var cancelConfirmStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -141,7 +141,7 @@ final class CalendarViewController: UIViewController {
     }
     
     func bind() {
-        cancleButton.rx.tap
+        cancelButton.rx.tap
             .bind { [weak self] _ in
                 guard let self else { return }
                 self.dismiss(animated: true)
@@ -241,7 +241,7 @@ final class CalendarViewController: UIViewController {
             grayLineView,
             startPickerView,
             endPickerView,
-            cancleConfirmStackView,
+            cancelConfirmStackView,
         ]
             .forEach({ calendarBackgroundView.addSubview($0) })
         
@@ -256,15 +256,15 @@ final class CalendarViewController: UIViewController {
         }
         startPickerView.snp.makeConstraints{
             $0.top.equalTo(grayLineView.snp.bottom).offset(20.0)
-            $0.bottom.equalTo(cancleConfirmStackView.snp.top).offset(-20.0)
+            $0.bottom.equalTo(cancelConfirmStackView.snp.top).offset(-20.0)
             $0.leading.trailing.equalToSuperview().inset(10.0)
         }
         endPickerView.snp.makeConstraints{
             $0.top.equalTo(grayLineView.snp.bottom).offset(20.0)
-            $0.bottom.equalTo(cancleConfirmStackView.snp.top).offset(-20.0)
+            $0.bottom.equalTo(cancelConfirmStackView.snp.top).offset(-20.0)
             $0.leading.trailing.equalToSuperview().inset(10.0)
         }
-        cancleConfirmStackView.snp.makeConstraints {
+        cancelConfirmStackView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(60.0)
         }
@@ -272,8 +272,8 @@ final class CalendarViewController: UIViewController {
         [startDateButton, endDateButton]
             .forEach({ dateButtonStackView.addArrangedSubview($0) })
         
-        [cancleButton, confirmButton]
-            .forEach({ cancleConfirmStackView.addArrangedSubview($0) })
+        [cancelButton, confirmButton]
+            .forEach({ cancelConfirmStackView.addArrangedSubview($0) })
     }
 }
 

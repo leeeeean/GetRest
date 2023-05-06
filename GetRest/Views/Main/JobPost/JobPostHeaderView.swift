@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol HeaderButtonTappedDelegate: AnyObject {
+    func headerStarButtonTapped(isStarFill: Bool)
+}
+
 final class JobPostHeaderView: UITableViewHeaderFooterView {
     static let identifier = "JobPostHeaderView"
     
@@ -54,6 +58,8 @@ final class JobPostHeaderView: UITableViewHeaderFooterView {
         
         return button
     }()
+    
+    weak var delegate: HeaderButtonTappedDelegate?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: JobPostHeaderView.identifier)
@@ -114,5 +120,6 @@ extension JobPostHeaderView {
     
     @objc func starButtonTapped(_ button: UIButton) {
         button.isSelected.toggle()
+        delegate?.headerStarButtonTapped(isStarFill: button.isSelected)
     }
 }

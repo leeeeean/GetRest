@@ -224,10 +224,10 @@ extension Withdrawal: UITextFieldDelegate {
 extension Reactive where Base: Withdrawal {
     var withdrawalAlert: Binder<Void> {
         return Binder(base) { base, void in
-            let alertController = ConfirmCancleAlerViewController(
+            let alertController = ConfirmCancelAlerViewController(
                             image: UIImage(named: "MyPageWithdrawal")!,
                             message: "정말 가실거에요?",
-                            alertType: .confirmAndCancle) {
+                            alertType: .confirmAndCancel) {
                                 print("탈퇴")
                                 let vc = UINavigationController(rootViewController: LoginViewController())
                                 vc.modalPresentationStyle = .fullScreen

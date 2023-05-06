@@ -1,5 +1,5 @@
 //
-//  ConfirmCancleAlerViewController.swift
+//  ConfirmCancelAlerViewController.swift
 //  GetRest
 //
 //  Created by 최리안 on 2023/04/19.
@@ -11,10 +11,10 @@ import RxSwift
 
 enum AlertType {
     case onlyConfirm
-    case confirmAndCancle
+    case confirmAndCancel
 }
 
-final class ConfirmCancleAlerViewController: UIViewController {
+final class ConfirmCancelAlerViewController: UIViewController {
     private lazy var backgroundView: UIView = {
         let view = UIView(frame: CGRect(
             x: 0,
@@ -63,7 +63,7 @@ final class ConfirmCancleAlerViewController: UIViewController {
         return label
     }()
     
-    private lazy var cancleButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("아니오", for: .normal)
         button.backgroundColor = .appColor(.baseGray)
@@ -89,7 +89,7 @@ final class ConfirmCancleAlerViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         
-        [cancleButton, confirmButton].forEach { stackView.addArrangedSubview($0) }
+        [cancelButton, confirmButton].forEach { stackView.addArrangedSubview($0) }
         
         return stackView
     }()
@@ -139,15 +139,15 @@ final class ConfirmCancleAlerViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        cancleButton.rx.tap
+        cancelButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true)
-//                self?.cancleButtonTapped()
+//                self?.cancelButtonTapped()
             })
             .disposed(by: disposeBag)
     }
     
-    func cancleButtonTapped() {
+    func cancelButtonTapped() {
         dismiss(animated: true)
     }
     

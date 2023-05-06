@@ -457,7 +457,7 @@ extension WriteViewController {
     
     @objc func longPressGoToDelete(_ gesture: UILongPressGestureRecognizer) {
         let alert = UIAlertController(title: "삭제하시겠습니까?", message: nil, preferredStyle: .alert)
-        let cancleAction = UIAlertAction(title: "닫기", style: .cancel)
+        let cancelAction = UIAlertAction(title: "닫기", style: .cancel)
         let confirmAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] _ in
             guard let self else { return }
             let index = gesture.view?.tag
@@ -465,7 +465,7 @@ extension WriteViewController {
             self.data.remove(at: index!)
             self.tagCollectionView.reloadData()
         }
-        [cancleAction, confirmAction].forEach({ alert.addAction($0) })
+        [cancelAction, confirmAction].forEach({ alert.addAction($0) })
         present(alert, animated: true)
     }
 }

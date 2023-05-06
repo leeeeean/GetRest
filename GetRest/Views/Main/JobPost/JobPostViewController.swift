@@ -43,7 +43,22 @@ final class JobPostViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        searchBar.showsCancelButton = true
+        searchBar.becomeFirstResponder()
+        searchBar.tintColor = .appColor(.baseGreen)
+        searchBar.searchTextField.tintColor = .appColor(.baseGreen)
+        searchBar.searchTextField.leftView?.tintColor = .appColor(.baseGreen)
+        searchBar.searchTextField.backgroundColor = .appColor(.lightGreen)
+        searchBar.delegate = self
+        
+        return searchBar
+    }()
+    
     let data = Data.shared
+    private var currentData = Data.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +73,7 @@ final class JobPostViewController: UIViewController {
     
     private func layout() {
         title = "채용공고"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "magnifyingglass"),
-            style: .plain,
-            target: self,
-            action: nil
-        )
-        navigationItem.rightBarButtonItem?.tintColor = .appColor(.baseGreen)
+        showSearchBarButton(shouldShow: true)
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.appColor(.baseGreen).cgColor,
             NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20.0, weight: .medium)
@@ -77,11 +86,64 @@ final class JobPostViewController: UIViewController {
             $0.top.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    private func showSearchBarButton(shouldShow: Bool) {
+        if shouldShow {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                image: UIImage(systemName: "magnifyingglass"),
+                style: .plain,
+                target: self,
+                action: #selector(showSearchBar)
+            )
+            navigationItem.rightBarButtonItem?.tintColor = .appColor(.baseGreen)
+
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    private func search(shouldShow: Bool) {
+        showSearchBarButton(shouldShow: !shouldShow)
+        searchBar.showsCancelButton = shouldShow
+        navigationItem.titleView = shouldShow ? searchBar : nil
+    }
+}
+extension JobPostViewController {
+    @objc func showSearchBar() {
+        search(shouldShow: true)
+    }
+        
+}
+
+extension JobPostViewController: HeaderButtonTappedDelegate {
+    func headerStarButtonTapped(isStarFill: Bool) {
+        if isStarFill {
+            currentData = data.filter{ $0.star == true }
+            print("data change")
+        } else {
+            currentData = data
+        }
+        tableView.reloadData()
+    }
+}
+
+extension JobPostViewController: ButtonTappedDelegate {
+    func starButtonTapped(_ button: UIButton) {
+        button.isSelected.toggle()
+    }
+}
+
+extension JobPostViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        search(shouldShow: false)
+        searchBar.text = ""
+    }
 }
 
 extension JobPostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: JobPostHeaderView.identifier) as? JobPostHeaderView else { return UIView() }
+        headerView.delegate = self
         
         return headerView
     }
@@ -98,7 +160,7 @@ extension JobPostViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.setData(data: data[indexPath.row])
+        cell.setData(data: currentData[indexPath.row])
         cell.selectionStyle = .none
         cell.delegate = self
         
@@ -106,12 +168,6 @@ extension JobPostViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-}
-
-extension JobPostViewController: ButtonTappedDelegate {
-    func starButtonTapped(_ button: UIButton) {
-        button.isSelected.toggle()
+        return currentData.count
     }
 }

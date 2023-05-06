@@ -445,7 +445,7 @@ extension Reactive where Base: SigninViewController {
         return Binder(base) { base, void in
 /*
             해결 1
-            let alertController = ConfirmCancleAlerViewController(
+            let alertController = ConfirmCancelAlerViewController(
                 image: UIImage(systemName: "circle")!,
                 message: "회원가입이 완료되었어요",
                 alertType: .onlyConfirm
@@ -467,7 +467,7 @@ extension Reactive where Base: SigninViewController {
             base.present(alertController, animated: true)
 */
 //            해결 3
-            let alertController = ConfirmCancleAlerViewController(
+            let alertController = ConfirmCancelAlerViewController(
                             image: UIImage(named: "SigninAlert")!,
                             message: "회원가입이 완료되었어요",
                             alertType: .onlyConfirm) {
