@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class CalendarViewModel {
+final class PortfolioCalendarViewModel {
     let disposeBag = DisposeBag()
     let writeViewModel = WriteViewModel()
     

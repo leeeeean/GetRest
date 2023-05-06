@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B15880929F86802007C3590 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880829F86802007C3590 /* CalendarViewController.swift */; };
-		4B15880B29F8C55D007C3590 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880A29F8C55D007C3590 /* CalendarViewModel.swift */; };
+		4B15880929F86802007C3590 /* PortfolioCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880829F86802007C3590 /* PortfolioCalendarViewController.swift */; };
+		4B15880B29F8C55D007C3590 /* PortfolioCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880A29F8C55D007C3590 /* PortfolioCalendarViewModel.swift */; };
 		4B15880F29FFBFAD007C3590 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15880E29FFBFAD007C3590 /* MyPageViewController.swift */; };
 		4B15881129FFD714007C3590 /* MyPagePasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881029FFD714007C3590 /* MyPagePasswordChangeViewController.swift */; };
 		4B15881329FFD7B0007C3590 /* MyPageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881229FFD7B0007C3590 /* MyPageSettingViewController.swift */; };
@@ -19,6 +19,9 @@
 		4B15881D2A025322007C3590 /* OpenSourceLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881C2A025322007C3590 /* OpenSourceLicense.swift */; };
 		4B1588202A0275FE007C3590 /* JobPostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */; };
 		4B1588222A027633007C3590 /* JobPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1588212A027633007C3590 /* JobPostTableViewCell.swift */; };
+		4B3185972A060C2400EEB2B7 /* JobPostCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185962A060C2400EEB2B7 /* JobPostCalendarViewController.swift */; };
+		4B3185992A06179D00EEB2B7 /* JobPostCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185982A06179D00EEB2B7 /* JobPostCalendarViewModel.swift */; };
+		4B31859B2A06182D00EEB2B7 /* JobPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */; };
 		4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */; };
 		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
 		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
@@ -84,8 +87,8 @@
 /* Begin PBXFileReference section */
 		1B3B2A6C64AAC8730BA65623 /* Pods-GetRest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRest.release.xcconfig"; path = "Target Support Files/Pods-GetRest/Pods-GetRest.release.xcconfig"; sourceTree = "<group>"; };
 		43EA8D9A8AC0E4727790C725 /* Pods-GetRest-GetRestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetRest-GetRestUITests.release.xcconfig"; path = "Target Support Files/Pods-GetRest-GetRestUITests/Pods-GetRest-GetRestUITests.release.xcconfig"; sourceTree = "<group>"; };
-		4B15880829F86802007C3590 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		4B15880A29F8C55D007C3590 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		4B15880829F86802007C3590 /* PortfolioCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCalendarViewController.swift; sourceTree = "<group>"; };
+		4B15880A29F8C55D007C3590 /* PortfolioCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCalendarViewModel.swift; sourceTree = "<group>"; };
 		4B15880E29FFBFAD007C3590 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		4B15881029FFD714007C3590 /* MyPagePasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePasswordChangeViewController.swift; sourceTree = "<group>"; };
 		4B15881229FFD7B0007C3590 /* MyPageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageSettingViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +99,9 @@
 		4B15881C2A025322007C3590 /* OpenSourceLicense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicense.swift; sourceTree = "<group>"; };
 		4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostHeaderView.swift; sourceTree = "<group>"; };
 		4B1588212A027633007C3590 /* JobPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostTableViewCell.swift; sourceTree = "<group>"; };
+		4B3185962A060C2400EEB2B7 /* JobPostCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCalendarViewController.swift; sourceTree = "<group>"; };
+		4B3185982A06179D00EEB2B7 /* JobPostCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCalendarViewModel.swift; sourceTree = "<group>"; };
+		4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewModel.swift; sourceTree = "<group>"; };
 		4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +233,7 @@
 				4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */,
 				4B15881F2A0275FE007C3590 /* JobPostHeaderView.swift */,
 				4B1588212A027633007C3590 /* JobPostTableViewCell.swift */,
+				4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */,
 			);
 			path = JobPost;
 			sourceTree = "<group>";
@@ -408,8 +415,10 @@
 				4BC4C0DC29EF941F00BF1DFE /*  ConfirmCancelAlerViewController.swift */,
 				4BA7A7EF29F6D535004EC262 /* CategorySelectViewController.swift */,
 				4BA7A7F229F788C8004EC262 /* CategorySelectViewModel.swift */,
-				4B15880829F86802007C3590 /* CalendarViewController.swift */,
-				4B15880A29F8C55D007C3590 /* CalendarViewModel.swift */,
+				4B15880829F86802007C3590 /* PortfolioCalendarViewController.swift */,
+				4B15880A29F8C55D007C3590 /* PortfolioCalendarViewModel.swift */,
+				4B3185962A060C2400EEB2B7 /* JobPostCalendarViewController.swift */,
+				4B3185982A06179D00EEB2B7 /* JobPostCalendarViewModel.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -706,13 +715,14 @@
 				4BC4C0E129F05BE200BF1DFE /* SigninViewModel.swift in Sources */,
 				4BA7A7EC29F57184004EC262 /* TagButtonCollectionViewCell.swift in Sources */,
 				4BC4C08F29ED5EAD00BF1DFE /* AppDelegate.swift in Sources */,
-				4B15880929F86802007C3590 /* CalendarViewController.swift in Sources */,
+				4B15880929F86802007C3590 /* PortfolioCalendarViewController.swift in Sources */,
 				4BA7A7D829F3249C004EC262 /* HomeTableViewPortfolioCell.swift in Sources */,
 				4BA7A7F029F6D535004EC262 /* CategorySelectViewController.swift in Sources */,
 				4BA7A7C129F27BEF004EC262 /* UILabel+.swift in Sources */,
 				4BA7A7F529F789C7004EC262 /* WriteViewModel.swift in Sources */,
 				4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */,
 				4BC4C0D829EE81A500BF1DFE /* Color+.swift in Sources */,
+				4B3185992A06179D00EEB2B7 /* JobPostCalendarViewModel.swift in Sources */,
 				4B1588192A025304007C3590 /* Withdrawal.swift in Sources */,
 				4BA7A7DB29F328CE004EC262 /* Portfolio.swift in Sources */,
 				4BA7A7E729F5421F004EC262 /* WriteCategory.swift in Sources */,
@@ -735,11 +745,13 @@
 				4BA7A7E129F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift in Sources */,
 				4B1588202A0275FE007C3590 /* JobPostHeaderView.swift in Sources */,
 				4B1588172A0252F7007C3590 /* PrivacyPolicy.swift in Sources */,
-				4B15880B29F8C55D007C3590 /* CalendarViewModel.swift in Sources */,
+				4B15880B29F8C55D007C3590 /* PortfolioCalendarViewModel.swift in Sources */,
 				4B1588222A027633007C3590 /* JobPostTableViewCell.swift in Sources */,
 				4BC4C0BF29ED5FCC00BF1DFE /* LogtinViewController.swift in Sources */,
 				4BC4C09129ED5EAD00BF1DFE /* SceneDelegate.swift in Sources */,
+				4B3185972A060C2400EEB2B7 /* JobPostCalendarViewController.swift in Sources */,
 				4BA7A7D629F32447004EC262 /* HomeTableViewQuarterHeaderView.swift in Sources */,
+				4B31859B2A06182D00EEB2B7 /* JobPostViewModel.swift in Sources */,
 				4B15881B2A025313007C3590 /* Inquiry.swift in Sources */,
 				4B15880F29FFBFAD007C3590 /* MyPageViewController.swift in Sources */,
 				4B15881329FFD7B0007C3590 /* MyPageSettingViewController.swift in Sources */,

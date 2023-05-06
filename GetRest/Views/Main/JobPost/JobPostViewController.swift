@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 struct Data {
     let image: String
@@ -28,6 +30,10 @@ struct Data {
         Data(image: "JobPostNaver", enterprise: "네이버", part: "iOS 앱 개발자", date: "~06월 19일 18시 00분", star: false),
         Data(image: "JobPostNaver", enterprise: "네이버", part: "iOS 앱 개발자", date: "~06월 19일 18시 00분", star: false)
     ]
+}
+
+protocol JobPostViewToJobPostHeaderViewProtocol: AnyObject {
+    func calendarViewDataToHeaderTextField(date: String)
 }
 
 final class JobPostViewController: UIViewController {
@@ -59,6 +65,10 @@ final class JobPostViewController: UIViewController {
     
     let data = Data.shared
     private var currentData = Data.shared
+    
+    weak var delegate: JobPostViewToJobPostHeaderViewProtocol?
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,9 +135,24 @@ extension JobPostViewController: HeaderButtonTappedDelegate {
         }
         tableView.reloadData()
     }
+    
+    func headerCalendarButtonTapped(date: String) {
+        let vc = JobPostCalendarViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.currentDate = date
+        vc.delegate = self
+        
+        present(vc, animated: true)
+    }
 }
 
-extension JobPostViewController: ButtonTappedDelegate {
+extension JobPostViewController: JobPostCalendarButtonTappedDelegate {
+    func calendarConfirmButtonTapped(date: String) {
+        delegate?.calendarViewDataToHeaderTextField(date: date)
+    }
+}
+
+extension JobPostViewController: TableViewCellButtonTappedDelegate {
     func starButtonTapped(_ button: UIButton) {
         button.isSelected.toggle()
     }
@@ -144,6 +169,7 @@ extension JobPostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: JobPostHeaderView.identifier) as? JobPostHeaderView else { return UIView() }
         headerView.delegate = self
+        delegate = headerView
         
         return headerView
     }

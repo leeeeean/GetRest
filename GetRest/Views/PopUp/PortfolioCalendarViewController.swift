@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class CalendarViewController: UIViewController {
+final class PortfolioCalendarViewController: UIViewController {
     private lazy var backgroundView: UIView = {
         let view = UIView(frame: CGRect(
             x: 0,
@@ -125,13 +125,13 @@ final class CalendarViewController: UIViewController {
     
     private let calendarData: [[Int]] = [Array(2012...2023), Array(1...12), Array(1...31)]
     let disposeBag = DisposeBag()
-    let viewModel = CalendarViewModel()
+    let viewModel = PortfolioCalendarViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         layout()
-        bind()
+        bind(viewModel)
     }
     
     override func viewWillLayoutSubviews() {
@@ -140,7 +140,7 @@ final class CalendarViewController: UIViewController {
         setPickerView(endPickerView)
     }
     
-    func bind() {
+    func bind(_ viewModel: PortfolioCalendarViewModel) {
         cancelButton.rx.tap
             .bind { [weak self] _ in
                 guard let self else { return }
@@ -277,7 +277,7 @@ final class CalendarViewController: UIViewController {
     }
 }
 
-extension CalendarViewController {
+extension PortfolioCalendarViewController {
     @objc func startDateButtonTapped() {
         startDateButton.backgroundColor = .white
         endDateButton.backgroundColor = .appColor(.baseGray)
@@ -299,12 +299,13 @@ extension CalendarViewController {
     }
 }
 
-extension CalendarViewController: UIPickerViewDelegate {
-    
+extension PortfolioCalendarViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        48
+    }
 }
 
-extension CalendarViewController: UIPickerViewDataSource {
-    
+extension PortfolioCalendarViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         3
     }
@@ -315,10 +316,6 @@ extension CalendarViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         "\(calendarData[component][row])"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        48
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

@@ -12,9 +12,5 @@ import RxSwift
 final class WriteViewModel {
     let disposeBag = DisposeBag()
     
-    
-    init() {
-    }
-    
 }
 

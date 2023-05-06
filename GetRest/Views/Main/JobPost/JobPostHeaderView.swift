@@ -9,6 +9,7 @@ import UIKit
 
 protocol HeaderButtonTappedDelegate: AnyObject {
     func headerStarButtonTapped(isStarFill: Bool)
+    func headerCalendarButtonTapped(date: String)
 }
 
 final class JobPostHeaderView: UITableViewHeaderFooterView {
@@ -71,6 +72,7 @@ final class JobPostHeaderView: UITableViewHeaderFooterView {
     }
     
     func layout() {
+        
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 3.0)
         layer.shadowOpacity = 0.2
@@ -110,7 +112,7 @@ final class JobPostHeaderView: UITableViewHeaderFooterView {
 extension JobPostHeaderView {
     @objc func calendarButtonTapped(_ button: UIButton) {
         print("calendar")
-        // calendar view
+        delegate?.headerCalendarButtonTapped(date: calendarLabel.text ?? "2012.01.01")
     }
     
     @objc func filterButtonTapped(_ button: UIButton) {
@@ -123,3 +125,11 @@ extension JobPostHeaderView {
         delegate?.headerStarButtonTapped(isStarFill: button.isSelected)
     }
 }
+
+extension JobPostHeaderView: JobPostViewToJobPostHeaderViewProtocol {
+
+    func calendarViewDataToHeaderTextField(date: String) {
+        calendarLabel.text = date
+    }
+}
+

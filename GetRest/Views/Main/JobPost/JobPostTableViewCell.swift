@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ButtonTappedDelegate: AnyObject {
+protocol TableViewCellButtonTappedDelegate: AnyObject {
     func starButtonTapped(_ button: UIButton)
 }
 
@@ -64,7 +64,7 @@ final class JobPostTableViewCell: UITableViewCell {
         return button
     }()
     
-    weak var delegate: ButtonTappedDelegate?
+    weak var delegate: TableViewCellButtonTappedDelegate?
     
     func setData(data: Data) {
         layout()

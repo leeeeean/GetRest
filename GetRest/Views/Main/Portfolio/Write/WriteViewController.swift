@@ -305,7 +305,7 @@ final class WriteViewController: UIViewController {
         dateTextButton.rx.tap
             .bind { [weak self] _ in
                 guard let self else { return }
-                let vc = CalendarViewController()
+                let vc = PortfolioCalendarViewController()
                 vc.modalPresentationStyle = .overFullScreen
                 self.present(vc, animated: true)
                 
