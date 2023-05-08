@@ -25,6 +25,8 @@
 		4B31859F2A0643F800EEB2B7 /* JobPostFilterCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B31859E2A0643F800EEB2B7 /* JobPostFilterCategory.swift */; };
 		4B3185A22A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */; };
 		4B3185A42A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */; };
+		4B3185A72A0889BE00EEB2B7 /* PortfolioPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185A62A0889BE00EEB2B7 /* PortfolioPageTableViewCell.swift */; };
+		4B3185A92A088FBD00EEB2B7 /* PortfolioPageTableViewTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3185A82A088FBD00EEB2B7 /* PortfolioPageTableViewTagCollectionViewCell.swift */; };
 		4BA7A7B929F22677004EC262 /* CoverLetterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */; };
 		4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */; };
 		4BA7A7BD29F226BE004EC262 /* JobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */; };
@@ -108,6 +110,8 @@
 		4B31859E2A0643F800EEB2B7 /* JobPostFilterCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterCategory.swift; sourceTree = "<group>"; };
 		4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostFilterViewCollectionViewHeader.swift; sourceTree = "<group>"; };
+		4B3185A62A0889BE00EEB2B7 /* PortfolioPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPageTableViewCell.swift; sourceTree = "<group>"; };
+		4B3185A82A088FBD00EEB2B7 /* PortfolioPageTableViewTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPageTableViewTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		4BA7A7B829F22677004EC262 /* CoverLetterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverLetterViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BA29F2269A004EC262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +225,16 @@
 			path = JobPostTableViewCell;
 			sourceTree = "<group>";
 		};
+		4B3185A52A087D4A00EEB2B7 /* JobPostFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				4B31859C2A06411800EEB2B7 /* JobPostFilterViewController.swift */,
+				4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */,
+				4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */,
+			);
+			path = JobPostFilterView;
+			sourceTree = "<group>";
+		};
 		4BA7A7B429F225F7004EC262 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,9 +262,7 @@
 				4BA7A7BC29F226BE004EC262 /* JobPostViewController.swift */,
 				4B31859A2A06182D00EEB2B7 /* JobPostViewModel.swift */,
 				4B3185A02A06458200EEB2B7 /* JobPostTableViewCell */,
-				4B31859C2A06411800EEB2B7 /* JobPostFilterViewController.swift */,
-				4B3185A32A06AF3F00EEB2B7 /* JobPostFilterViewCollectionViewHeader.swift */,
-				4B3185A12A0645AE00EEB2B7 /* JobPostFilterViewCollectionViewCell.swift */,
+				4B3185A52A087D4A00EEB2B7 /* JobPostFilterView */,
 			);
 			path = JobPost;
 			sourceTree = "<group>";
@@ -298,6 +310,8 @@
 				4BA7A7E029F4EF2E004EC262 /* PortfolioViewPageCollectionViewCell.swift */,
 				4BA7A7E229F4FF19004EC262 /* PortfolioViewTabBarCollectionViewCell.swift */,
 				4BA7A7E929F54F43004EC262 /* PortfolioViewEmptyCollectionViewCell.swift */,
+				4B3185A62A0889BE00EEB2B7 /* PortfolioPageTableViewCell.swift */,
+				4B3185A82A088FBD00EEB2B7 /* PortfolioPageTableViewTagCollectionViewCell.swift */,
 			);
 			path = PortfolioViewCells;
 			sourceTree = "<group>";
@@ -750,6 +764,8 @@
 				4BA7A7C529F28C8D004EC262 /* HomeTableViewEmptyCell.swift in Sources */,
 				4BA7A7C329F282BD004EC262 /* HomeTableViewHeaderView.swift in Sources */,
 				4BA7A7EE29F57F76004EC262 /* TagTextFieldCollectionViewCell.swift in Sources */,
+				4B3185A92A088FBD00EEB2B7 /* PortfolioPageTableViewTagCollectionViewCell.swift in Sources */,
+				4B3185A72A0889BE00EEB2B7 /* PortfolioPageTableViewCell.swift in Sources */,
 				4BA7A7DF29F4E3B3004EC262 /* WriteViewController.swift in Sources */,
 				4BA7A7BF29F226E2004EC262 /* PortfolioViewController.swift in Sources */,
 				4BA7A7BB29F2269A004EC262 /* HomeViewController.swift in Sources */,

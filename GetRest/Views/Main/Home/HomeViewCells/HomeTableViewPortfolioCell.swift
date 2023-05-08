@@ -21,7 +21,6 @@ final class HomeTableViewPortfolioCell : UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.text = data?.title
         
         return label
     }()
@@ -29,7 +28,6 @@ final class HomeTableViewPortfolioCell : UITableViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .light)
-        label.text = data?.date
         
         return label
     }()
@@ -42,18 +40,21 @@ final class HomeTableViewPortfolioCell : UITableViewCell {
         return button
     }()
     
-    private var data: Portfolio?
     
-    func layout(portfolio: Portfolio) {
-        data = portfolio
+    func setData(portfolio: Portfolio) {
+        titleLabel.text = portfolio.title
+        dateLabel.text = portfolio.date
         
+        layout()
+    }
+    
+    private func layout() {
         [view, titleLabel, dateLabel, button]
             .forEach { addSubview($0) }
         
         view.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16.0)
             $0.top.bottom.equalToSuperview().inset(8.0)
-//            $0.height.equalTo(80)
         }
         
         titleLabel.snp.makeConstraints {

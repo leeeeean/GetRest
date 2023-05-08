@@ -77,8 +77,22 @@ final class JobPostViewController: UIViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarLayout()
+    }
+    
     func bind() {
         
+    }
+    
+    private func navigationBarLayout() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.appColor(.baseGreen)]
+        appearance.shadowColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     private func layout() {
@@ -88,8 +102,6 @@ final class JobPostViewController: UIViewController {
             NSAttributedString.Key.foregroundColor: UIColor.appColor(.baseGreen).cgColor,
             NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20.0, weight: .medium)
         ]
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.shadowImage = UIImage()
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints {

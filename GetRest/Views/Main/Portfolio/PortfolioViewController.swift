@@ -43,13 +43,8 @@ final class PortfolioViewController: UIViewController {
         return collectionView
     }()
 
-//    private lazy var indicatorView: UIView =  {
-//        let view = UIView()
-//        view.backgroundColor = .appColor(.baseGreen)
-//
-//        return view
-//    }()
-
+    let data: [Portfolio]? = Portfolio.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -88,13 +83,6 @@ final class PortfolioViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         })
-        
-//        indicatorView.snp.makeConstraints({
-//            $0.top.equalTo(categoryTabBarCollectionView.snp.bottom)
-//            $0.bottom.equalTo(categoryPageViewCollectionView.snp.top)
-//            $0.height.equalTo(1.5)
-//            $0.width.equalTo(90.0)
-//        })
     }
 
 }
@@ -112,19 +100,27 @@ extension PortfolioViewController: UICollectionViewDataSource {
             cell.layout(category: WriteCategory.allCases[indexPath.row].rawValue)
             return cell
         } else {
-            let data: [Int]? = nil
-            guard data == nil,
-                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewEmptyCollectionViewCell.identifier, for: indexPath) as? PortfolioViewEmptyCollectionViewCell else { return UICollectionViewCell() }
-            cell.moveToWritePage = { [weak self] in
-                let vc = WriteViewController()
-                self?.navigationController?.pushViewController(vc, animated: true)
+            if data == nil,
+               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewEmptyCollectionViewCell.identifier, for: indexPath) as? PortfolioViewEmptyCollectionViewCell {
+                cell.moveToWritePage = { [weak self] in
+                    let vc = WriteViewController()
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+                cell.layout()
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewPageCollectionViewCell.identifier, for: indexPath) as? PortfolioViewPageCollectionViewCell else { return UICollectionViewCell() }
+                
+                let category = WriteCategory.allCases[indexPath.row]
+                let filteredData = data?.filter({ portfolio in
+                    if category == .전체 {
+                        return true
+                    }
+                    return portfolio.category == category
+                }) ?? []
+                cell.setData(portfolios: filteredData)
+                return cell
             }
-            cell.layout()
-            return cell
-            
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewPageCollectionViewCell.identifier, for: indexPath) as? PortfolioViewPageCollectionViewCell else { return UICollectionViewCell() }
-            cell.layout()
-            return cell
         }
     }
 }
@@ -133,17 +129,6 @@ extension PortfolioViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryTabBarCollectionView {
-//            guard let cell = categoryTabBarCollectionView.cellForItem(at: indexPath) as? PortfolioViewTabBarCollectionViewCell else { return }
-            
-//            indicatorView.snp.makeConstraints {
-//                $0.trailing.leading.equalTo(cell)
-//                $0.top.equalTo(cell.snp.bottom)
-//                $0.bottom.equalTo(categoryPageViewCollectionView.snp.top)
-//            }
-//
-//            UIView.animate(withDuration: 0.3) {
-//                self.view.layoutIfNeeded()
-//            }
             
             for i in 0..<6 {
                 let index = IndexPath(row: i, section: 0)

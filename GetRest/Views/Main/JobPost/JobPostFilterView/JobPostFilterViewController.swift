@@ -33,9 +33,9 @@ final class JobPostFilterViewController: UIViewController {
     
     private func layout() {
         title = "선택해주세요"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(cancelButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "checkmark"), style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "checkmark"), style: .plain, target: self, action: #selector(confirmButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = .white
         
         let appearance = UINavigationBarAppearance()
@@ -44,6 +44,7 @@ final class JobPostFilterViewController: UIViewController {
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.barTintColor = .green
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
@@ -52,10 +53,23 @@ final class JobPostFilterViewController: UIViewController {
     }
 }
 
+extension JobPostFilterViewController {
+    @objc func cancelButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func confirmButtonTapped() {
+        navigationController?.popViewController(animated: true)
+        // check된 데이터 서버에 넘기기
+    }
+}
+
 extension JobPostFilterViewController: JobPostFilterButtonTappedDelegate {
     func filterButtonTapped(button: UIButton, isSelected: Bool) {
         // selected button data 에 추가... viewModel의 역할인가?
         print("\(button.titleLabel?.text) isSelected \(isSelected)")
+        
+        // if 전체 button selected --> selectedbuttondata update and collectionviewreload
     }
 }
 

@@ -113,7 +113,7 @@ extension HomeViewController: UITableViewDataSource {
             return 1
         }
         if section == 0 { return 1 }
-        return data[section-1].count
+        return Portfolio.shared.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,7 +136,8 @@ extension HomeViewController: UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewPortfolioCell.identifier, for: indexPath) as? HomeTableViewPortfolioCell
         else { return UITableViewCell() }
-        cell.layout(portfolio: Portfolio.shared)
+        
+        cell.setData(portfolio: Portfolio.shared[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

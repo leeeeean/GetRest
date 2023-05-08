@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WriteCategory: String, CaseIterable{
+enum WriteCategory: String, CaseIterable, Codable{
     case 전체
     case 대외활동
     case 학교활동
