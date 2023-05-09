@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol TappedEmptyCollectionViewButtonDelegate: AnyObject {
+    func writeButtonTapped()
+}
+
 final class PortfolioViewEmptyCollectionViewCell: UICollectionViewCell {
     static let identifier = "PortfolioViewEmptyCollectionViewCell"
     
@@ -54,10 +58,10 @@ final class PortfolioViewEmptyCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func writeButtonTapped() {
-        moveToWritePage!()
+        delegate?.writeButtonTapped()
     }
     
-    var moveToWritePage: (() -> Void)? = nil
+    var delegate: TappedEmptyCollectionViewButtonDelegate?
     
     func layout() {
         

@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol TappedTableViewCellDelegate: AnyObject {
+    func navigationToReadViewController(portfolio: Portfolio)
+}
+
 final class PortfolioViewPageCollectionViewCell: UICollectionViewCell {
     static let identifier = "PortfolioViewPageCollectionViewCell"
     
@@ -23,9 +27,11 @@ final class PortfolioViewPageCollectionViewCell: UICollectionViewCell {
     }()
     
     private var portfolios: [Portfolio]?
+    var delegate: TappedTableViewCellDelegate?
     
     func setData(portfolios: [Portfolio]) {
         self.portfolios = portfolios
+        tableView.reloadData()
         
         layout()
     }
@@ -42,7 +48,7 @@ final class PortfolioViewPageCollectionViewCell: UICollectionViewCell {
 
 extension PortfolioViewPageCollectionViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        portfolios?.count ?? 0
+        return portfolios?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,6 +59,10 @@ extension PortfolioViewPageCollectionViewCell: UITableViewDataSource {
         cell.setData(portfolio: portfolios![indexPath.row])
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.navigationToReadViewController(portfolio: portfolios![indexPath.row])
     }
 }
 

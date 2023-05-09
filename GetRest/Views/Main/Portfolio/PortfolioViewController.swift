@@ -100,28 +100,47 @@ extension PortfolioViewController: UICollectionViewDataSource {
             cell.layout(category: WriteCategory.allCases[indexPath.row].rawValue)
             return cell
         } else {
-            if data == nil,
-               let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewEmptyCollectionViewCell.identifier, for: indexPath) as? PortfolioViewEmptyCollectionViewCell {
-                cell.moveToWritePage = { [weak self] in
-                    let vc = WriteViewController()
-                    self?.navigationController?.pushViewController(vc, animated: true)
-                }
-                cell.layout()
-                return cell
-            } else {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewPageCollectionViewCell.identifier, for: indexPath) as? PortfolioViewPageCollectionViewCell else { return UICollectionViewCell() }
-                
-                let category = WriteCategory.allCases[indexPath.row]
-                let filteredData = data?.filter({ portfolio in
-                    if category == .전체 {
-                        return true
-                    }
-                    return portfolio.category == category
-                }) ?? []
-                cell.setData(portfolios: filteredData)
+            guard let emptyDataCell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewEmptyCollectionViewCell.identifier, for: indexPath) as? PortfolioViewEmptyCollectionViewCell,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PortfolioViewPageCollectionViewCell.identifier, for: indexPath) as? PortfolioViewPageCollectionViewCell else { return UICollectionViewCell() }
+            
+            emptyDataCell.delegate = self
+            cell.delegate = self
+            
+            if data == nil {
+                emptyDataCell.layout()
                 return cell
             }
+            
+            let category = WriteCategory.allCases[indexPath.row]
+            let filteredData = data!.filter({ portfolio in
+                if category == .전체 {
+                    return true
+                } else {
+                    return portfolio.category == category
+                }
+            })
+            
+            if filteredData.count == 0 {
+                emptyDataCell.layout()
+                return emptyDataCell
+            }
+            cell.setData(portfolios: filteredData)
+            return cell
         }
+    }
+}
+
+extension PortfolioViewController: TappedTableViewCellDelegate {
+    func navigationToReadViewController(portfolio: Portfolio) {
+        let vc = ReadViewController(portfolio: portfolio)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension PortfolioViewController: TappedEmptyCollectionViewButtonDelegate {
+    func writeButtonTapped() {
+        let vc = WriteViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
